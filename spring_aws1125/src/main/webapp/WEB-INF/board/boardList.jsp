@@ -20,7 +20,7 @@
 		<ul>
 			<li><a href ="<%=request.getContextPath()%>/member/main.aws">홈</a></li>
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
-			<li><a href="/this-month-bread">이달의 빵</a></li>
+			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
 		</ul>

@@ -67,7 +67,7 @@ slides.forEach((slide, index) => {
 		<ul>
 			<li><a href ="<%=request.getContextPath()%>/member/main.aws">홈</a></li>
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
-			<li><a href="/this-month-bread">이달의 빵</a></li>
+			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
 		</ul>
@@ -92,7 +92,7 @@ slides.forEach((slide, index) => {
                뭘 적어야 할지 모르겠네영~~~~~ <br>
                하지만 언젠가 생각이 나겠죠~~~~</p>
               <!-- 버튼을 banner-text 아래에 위치시키기 -->
-        <button onclick="window.location.href='/search'" class="btn">빵집 찾기</button> 
+        <button onclick="location.href='<%= request.getContextPath()%>/review/reviewList.aws'" class="btn">빵집 찾기</button> 
         </div>
     </div>
 </section>

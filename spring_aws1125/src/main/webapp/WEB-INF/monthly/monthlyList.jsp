@@ -4,14 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>로그인</title>
-<link href= "<%=request.getContextPath()%>/resources/css/loginStyle.css" type-"text/css" rel="stylesheet" >
+<title>이달의 빵집</title>
+<link href= "<%=request.getContextPath()%>/resources/css/monthlyListStyle.css" type-"text/css" rel="stylesheet" >
 </head>
 <body>
 
 <header class="header">
 	<div class="logo">
-		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
+		빵지순례
 	</div>
 <div class="separator"></div>
         
@@ -29,22 +29,23 @@
 <div class="separator"></div>
 </header>
 
-		<!-- 로그인 하기 -->
-    <div class="container">
-        <h1 class="site-name">로그인하기</h1>
-        <div class="login-box">
-            <form action="/main" method="post">
-                <input type="text" name="memberid" placeholder="아이디" required>
-                <input type="password" name="memberpw" placeholder="비밀번호" required>
-                <button type="submit">로그인 하기</button>
-            </form>
-            <div class="links">
-                <a href="/find-id">아이디찾기</a> |
-                <a href="/find-password">비밀번호 찾기</a> |
-                <a href="<%=request.getContextPath()%>/member/memberJoin.aws">회원가입</a>
-            </div>
-        </div>
+
+<main>
+  <div class="search-section">
+    <h1>이달의 빵집 &#129360;</h1>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="검색어를 입력하세요">
+      <button class="search-button">&#128269;</button>
     </div>
+  </div>
+</main>
+
+
+<!-- 부드럽고 얇은 선 추가 -->
+<hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+
+
 
 
 
@@ -53,7 +54,9 @@
         <div class="footer-content">
             <p>&copy; 2024 빵지순례 웹사이트. 모든 권리 보유.</p>
         </div>
-    </footer>
+    </footer>  
+
+
 
 </body>
 </html>
