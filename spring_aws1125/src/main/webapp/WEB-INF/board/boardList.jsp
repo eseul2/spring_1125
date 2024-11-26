@@ -19,7 +19,7 @@
 	<nav class="navbar">
 		<ul>
 			<li><a href ="<%=request.getContextPath()%>/member/main.aws">홈</a></li>
-			<li><a href="/find-bakery">빵집찾기</a></li>
+			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
 			<li><a href="/this-month-bread">이달의 빵</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
@@ -74,9 +74,10 @@
             </div>
    
        		<!-- 글쓰기 버튼 -->
-        <div class="write-btn-container">
-			<button class="write-btn">글쓰기</button>
+		<div class="write-btn-container">
+			<a class="write-btn" href="<%=request.getContextPath()%>/board/boardWrite.aws">글쓰기</a>
 		</div>
+		
         <!-- 페이지네이션 (페이지 이동) -->
         <div class="pagination">
             <a href="#" class="prev">◀</a>

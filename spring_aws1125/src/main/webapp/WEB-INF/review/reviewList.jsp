@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>메인페이지</title>
-<link href= "<%=request.getContextPath()%>/resources/css/mainStyle.css" type-"text/css" rel="stylesheet" >
+<title>빵집 찾기</title>
+<link href= "<%=request.getContextPath()%>/resources/css/reviewListStyle.css" type-"text/css" rel="stylesheet" >
 </head>
 
 <script>
@@ -51,13 +52,17 @@ slides.forEach((slide, index) => {
 
 </script>
 
-
-
 <body>
+
+
+
+
+
+
 
 <header class="header">
 	<div class="logo">
-		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
+		빵지순례
 	</div>
 <div class="separator"></div>
         
@@ -75,35 +80,47 @@ slides.forEach((slide, index) => {
 <div class="separator"></div>
 </header>
 
-<!-- 메인 콘텐츠 시작 -->
-<section class="main-banner">
-    <div class="banner-content">
-        <!-- 배너 이미지 영역 -->
-        <div class="banner-image">
-            <img src="<%= request.getContextPath() %>/resources/images/main.jpg" alt="빵집 이미지" />
-        </div>
-        
-    
-        <!-- 문구 영역 -->
-        <div class="banner-text">
-            <h1>이달의 빵집 &#127838;</h1>
-            <p>이곳은 전국의 빵집을 소개하고 리뷰를 공유하는 공간입니다.<br>
-               당신만의 숨은 맛집을 찾고 공유해보세요!<br>
-               뭘 적어야 할지 모르겠네영~~~~~ <br>
-               하지만 언젠가 생각이 나겠죠~~~~</p>
-              <!-- 버튼을 banner-text 아래에 위치시키기 -->
-        <button onclick="window.location.href='/search'" class="btn">빵집 찾기</button> 
-        </div>
+
+<main>
+  <div class="search-section">
+    <h1>어떤 빵집을 찾으시나요?</h1>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="검색어를 입력하세요">
+      <button class="search-button">&#128269;</button>
     </div>
-</section>
+  </div>
+</main>
 
 
 <!-- 부드럽고 얇은 선 추가 -->
 <hr style="border: 1px solid #ddd; margin: 20px 0;">
 
+
+
+<!-- 카테고리 섹션 -->
+<div class="category-section">
+  <div class="category-item" onclick="showRestaurants('서울')">서울</div> <!-- 함수 이름 바꾸기 -->
+  <div class="category-item" onclick="showRestaurants('경기')">경기</div>
+  <div class="category-item" onclick="showRestaurants('경남/울산')">경남/울산</div>
+  <div class="category-item" onclick="showRestaurants('경북')">경북</div>
+  <div class="category-item" onclick="showRestaurants('강원')">강원</div>
+  <div class="category-item" onclick="showRestaurants('광주')">광주</div>
+  <div class="category-item" onclick="showRestaurants('대전')">대전</div>
+  <div class="category-item" onclick="showRestaurants('대구')">대구</div>
+  <div class="category-item" onclick="showRestaurants('부산')">부산</div>
+  <div class="category-item" onclick="showRestaurants('인천')">인천</div>
+  <div class="category-item" onclick="showRestaurants('전남')">전남</div>
+  <div class="category-item" onclick="showRestaurants('전북')">전북</div>
+  <div class="category-item" onclick="showRestaurants('충남')">충남</div>
+  <div class="category-item" onclick="showRestaurants('충북/세종')">충북/세종</div>
+</div>
+
+
+
+
 <!-- 빵집 추천 미리보기 게시물 띄우기 -->
 <section class="recommend-section">
-    <h2>Bakery Review</h2>
+    <h2></h2>
     <div class="card-container">
         <div class="card" onclick="openModal('bakery1')">
             <img src="<%= request.getContextPath() %>/resources/images/bakery1.jpg" alt="추천 빵집 1">
@@ -181,9 +198,25 @@ slides.forEach((slide, index) => {
             </div>
         </div>
     </div>
+
+    
+	<!-- 페이지네이션 (페이지 이동) -->
+	<div class="pagination">
+		<a href="#" class="prev">◀</a>
+		<a href="#">1</a>
+		<a href="#">2</a>
+		<a href="#">3</a>
+		<a href="#">4</a>
+		<a href="#">5</a>
+		<a href="#" class="next">▶</a>
+	</div>
     
 </section>
 <!-- 메인 콘텐츠 끝 -->
+
+
+
+
 
 
     <!-- 푸터 영역 (페이지 끝부분에 추가) -->
@@ -191,7 +224,7 @@ slides.forEach((slide, index) => {
         <div class="footer-content">
             <p>&copy; 2024 빵지순례 웹사이트. 모든 권리 보유.</p>
         </div>
-    </footer>
+    </footer>    
     
     
 <!-- 모달 팝업 -->
@@ -353,7 +386,7 @@ window.onclick = function (event) {
   }
 };
 
-</script>    
-   
+</script>      
+
 </body>
 </html>

@@ -19,7 +19,7 @@ ${memberName}&nbsp;
 
 <a href ="<%=request.getContextPath()%>/member/main.aws">메인 페이지</a>
 <br>
-<a href ="<%=request.getContextPath()%>/member/memberLogin.aws">로그인 페이지</a>
+<a href ="<%=request.getContextPath()%>/board/boardContents.aws">자유게시판 내용</a>
 <br>
 
 </body>
