@@ -120,41 +120,50 @@ slides.forEach((slide, index) => {
 
 <!-- 빵집 추천 미리보기 게시물 띄우기 -->
 <section class="recommend-section">
-    <h2></h2>
     <div class="card-container">
         <div class="card" onclick="openModal('bakery1')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery1.jpg" alt="추천 빵집 1">
+            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 1">
             <div class="card-content">
                 <h3><strong>빵집 이름 1</strong></h3>
                 <!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>서울 강남구의 베이커리로, 바게트가 유명합니다!</p>
             </div>
         </div>
         <div class="card" onclick="openModal('bakery2')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery2.jpg" alt="추천 빵집 2">
+            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 2">
             <div class="card-content">
                 <h3><strong>빵집 이름 2</strong></h3>
 				<!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
-                <p>부산 해운대에 위치한 달콤한 케이크로 유명한 곳!</p>
+				<hr class="freview"> <!-- 미리보기 구분선 -->
+                <div class="contact-info">
+                <p>전화: 042-111-111</p>
+                <p>주소: 서울 강남구 테헤란로 123</p>
+           		 </div>
+           		 <hr class="freview1"> <!-- 미리보기 구분선 -->           
+                <p>부산 해운대에 위치한 달콤한 케이크로 유명한 곳!
+                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
+                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
+                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
+                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
+                </p>
             </div>
         </div>
         <div class="card" onclick="openModal('bakery3')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery3.jpg" alt="추천 빵집 3">
+            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 3">
             <div class="card-content">
                 <h3><strong>빵집 이름 3</strong></h3>
                 <!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
             </div>
         </div>
         <div class="card" onclick="openModal('bakery4')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery3.jpg" alt="추천 빵집 4">
+            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 4">
             <div class="card-content">
                 <h3><strong>빵집 이름 4</strong></h3>
 				<!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
             </div>
         </div>
@@ -162,20 +171,20 @@ slides.forEach((slide, index) => {
     
         <div class="card-container">
         <div class="card" onclick="openModal('bakery1')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery1.jpg" alt="추천 빵집 1">
+            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 1">
             <div class="card-content">
                 <h3><strong>빵집 이름 1</strong></h3>
 				<!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>서울 강남구의 베이커리로, 바게트가 유명합니다!</p>
             </div>
         </div>
         <div class="card" onclick="openModal('bakery2')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery2.jpg" alt="추천 빵집 2">
+            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 2">
             <div class="card-content">
                 <h3><strong>빵집 이름 2</strong></h3>
 				<!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>부산 해운대에 위치한 달콤한 케이크로 유명한 곳!</p>
             </div>
         </div>
@@ -184,7 +193,7 @@ slides.forEach((slide, index) => {
             <div class="card-content">
                 <h3><strong>빵집 이름 3</strong></h3>
 				<!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
             </div>
         </div>
@@ -193,7 +202,12 @@ slides.forEach((slide, index) => {
             <div class="card-content">
                 <h3><strong>빵집 이름 4</strong></h3>
 				<!-- 가로 구분선 -->
-				<hr class="preview"> <!-- 미리보기 구분선 -->
+				<hr class="freview"> <!-- 미리보기 구분선 -->
+				<div class="contact-info">
+                <p>전화: 042-111-111</p>
+                <p>주소: 서울 강남구 테헤란로 123</p>
+           		 </div>
+           		 <hr class="freview1"> <!-- 미리보기 구분선 -->
                 <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
             </div>
         </div>

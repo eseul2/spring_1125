@@ -172,19 +172,18 @@
 .card-container {
     display: flex;
     justify-content: space-between; /* 카드 간의 간격을 일정하게 */
-    gap: 15px; /* 카드 간격 조정 (너무 크지 않도록) */
     flex-wrap: wrap; /* 카드가 화면을 넘어가면 자동으로 줄 바꿈 */
     margin: 0 auto; /* 중앙 정렬 */
     max-width: 1200px; /* 최대 너비를 설정해서 너무 커지지 않도록 */
-    margin-bottom: 40px; /* 카드 밑에 간격 띄우기 */
+    margin-bottom: 15px; /* 카드 밑에 간격 띄우기 */
 }
 
 .card {
-    width: 22%; /* 한 줄에 4개가 잘 보이도록 너비 설정 (조정됨) */
-    height: 330px; /* 카드의 높이 조정 */
-    margin-bottom: 20px; /* 카드 간의 세로 간격 */
+    width: 290px; /* 한 카드의 고정 너비 설정 */
+    height: 450px; /* 카드의 높이 조금 더 늘리기 */
+    margin-bottom: 15px; /* 카드 간의 세로 간격 조금 줄이기 */
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -210,12 +209,20 @@
     font-size: 1.2rem;
     font-weight: bold; /* 제목을 굵은 글씨로 */
     margin-bottom: 10px;
+    text-align: left;
 }
+
+
 
 .card-content p {
     font-size: 0.9rem;
-    color: #555;
+    color: black;
     margin-bottom: 15px;
+    text-overflow: ellipsis; /* 내용이 길면 '...'으로 표시 */
+    overflow: hidden; /* 내용이 카드 크기를 넘지 않도록 숨김 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 4줄까지만 표시 */
+    -webkit-box-orient: vertical;
 }
 
 /* 카드 버튼 스타일 */
@@ -236,6 +243,7 @@
 .card-content .btn:hover {
     background: #ff5656;
 }
+
 
 
 
@@ -389,16 +397,20 @@
 
 
 /* 모달 내 가로 구분선 스타일 */
-/* 미리보기 가로 구분선 스타일 */
-.modal-divider, .freview {
+.modal-divider,.freview1 {
   border: none;
   border-top: 1px solid #ccc; /* 연한 회색 선 */
   margin: 10px 0; /* 위아래 여백 */
 }
 
 
-
-
+/* 카드 빵집이름 아래 가로 구분선 스타일 */
+.freview {
+  border: none;
+  border-top: 1px solid blue; /* 연한 회색 선 */
+  margin: 10px 0; /* 위아래 여백 */
+	
+}
 
 
 
