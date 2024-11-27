@@ -75,6 +75,7 @@ slides.forEach((slide, index) => {
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
+			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>
 		</ul>
 	</nav>
 <div class="separator"></div>
@@ -137,9 +138,10 @@ slides.forEach((slide, index) => {
 				<!-- 가로 구분선 -->
 				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <div class="contact-info">
-                <p>전화: 042-111-111</p>
-                <p>주소: 서울 강남구 테헤란로 123</p>
-           		 </div>
+					<p><span class="label">주소:</span> 
+					<span class="value">갈마동 333-343번지 101호
+					갈마동 333-343번지 101호</span></p>
+				</div>
            		 <hr class="freview1"> <!-- 미리보기 구분선 -->           
                 <p>부산 해운대에 위치한 달콤한 케이크로 유명한 곳!
                 부산 해운대에 위치한 달콤한 케이크로 유명한 곳
@@ -224,8 +226,15 @@ slides.forEach((slide, index) => {
 		<a href="#">5</a>
 		<a href="#" class="next">▶</a>
 	</div>
-    
 </section>
+
+
+<!-- 글쓰기 버튼 (관리자만 보이게) -->
+<%-- <% if (grade.equals("admin")) { %> --%>
+  <div class="write-button-container">
+    <a href="<%= request.getContextPath() %>/review/reviewWrite.aws" class="write-button">글쓰기</a>
+  </div>
+<%-- <% } %> --%>
 <!-- 메인 콘텐츠 끝 -->
 
 

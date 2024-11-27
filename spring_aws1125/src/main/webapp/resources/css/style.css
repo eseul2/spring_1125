@@ -1,0 +1,62 @@
+/* 제품 이미지와 정보를 포함한 전체 컨테이너 */
+.product-container {
+  /* 수평으로 배치 (이미지와 텍스트가 나란히 표시) */
+  display: flex;
+  /* 컨텐츠가 수평으로 배치되도록 방향을 설정 */
+  flex-direction: row;
+  /* 두 영역 사이의 간격을 자동으로 조정 */
+  justify-content: space-between;
+  /* 상단에 맞추어 배치 */
+  align-items: flex-start;
+  /* 왼쪽과 오른쪽에 여백을 추가 */
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* 오른쪽 제품 정보를 담은 영역 */
+.product-info {
+  /* 왼쪽 이미지를 제외한 부분이 차지할 공간 */
+  flex: 1;
+  /* 오른쪽 영역의 최대 너비를 600px로 제한 */
+  max-width: 600px;
+}
+
+/* 제품 제목 스타일 */
+.product-title {
+  /* 제목의 크기 */
+  font-size: 24px;
+  /* 제목을 두껍게 */
+  font-weight: bold;
+  /* 제목 아래에 간격을 추가 */
+  margin-bottom: 10px;
+}
+
+/* 제품 설명 스타일 */
+.product-description {
+  /* 설명의 크기 */
+  font-size: 14px;
+  /* 설명의 색상 */
+  color: #777;
+  /* 설명과 다른 정보 사이에 간격을 추가 */
+  margin-bottom: 20px;
+}
+
+/* 제품 세부 사항 영역 스타일 */
+.product-details {
+  /* 세부 사항 텍스트의 크기 */
+  font-size: 16px;
+}
+
+/* 레이블(미니샵, 판매가 등) 스타일 */
+.label {
+  /* 레이블을 굵게 표시 */
+  font-weight: bold;
+}
+
+/* 색상 선택 드롭다운 메뉴 스타일 */
+.product-details select {
+  /* 드롭다운 메뉴의 상단 여백 */
+  margin-top: 5px;
+  /* 드롭다운 메뉴의 내부 여백 */
+  padding: 5px;
+}

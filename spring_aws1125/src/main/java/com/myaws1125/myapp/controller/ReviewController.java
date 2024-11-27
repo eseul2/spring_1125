@@ -21,5 +21,14 @@ public class ReviewController {
 		String path = "WEB-INF/review/reviewList";
 		return path;
 	}
+	
+	
+	// 빵집찾기 글쓰기 화면
+	@RequestMapping(value= "reviewWrite.aws", method=RequestMethod.GET)
+	public String reviewWrite() {
+			
+		String path = "WEB-INF/review/reviewWrite";
+		return path;
+	}
 
 }

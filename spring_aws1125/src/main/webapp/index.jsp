@@ -22,6 +22,8 @@ ${memberName}&nbsp;
 <a href ="<%=request.getContextPath()%>/board/boardContents.aws">자유게시판 내용</a>
 <br>
 
+<a href ="<%=request.getContextPath()%>/board/test.aws">내용</a>
+
 </body>
 </html>
 

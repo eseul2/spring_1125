@@ -23,6 +23,7 @@
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
+			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>
 		</ul>
 	</nav>
 <div class="separator"></div>
@@ -72,24 +73,52 @@
                 <a href="#">[공지] 회원 가입 안내</a>
                 <span class="date">홍길동 | 2024.11.14 18:10</span>
             </div>
+            <div class="board-item">
+                <a href="#">[공지] 2025년 사이트 리뉴얼 예정</a>
+                <span class="date">홍길동 | 2024.11.14 18:10</span>
+            </div>
+            <div class="board-item">
+                <a href="#">[공지] 회원 가입 안내</a>
+                <span class="date">홍길동 | 2024.11.14 18:10</span>
+            </div>
+            <!-- 추가 게시물 목록 추가 -->
+			<div class="board-item">
+                <a href="#">[공지] 회원 가입 안내</a>
+                <span class="date">홍길동 | 2024.11.14 18:10</span>
+            </div>
+            <div class="board-item">
+                <a href="#">[공지] 회원 가입 안내</a>
+                <span class="date">홍길동 | 2024.11.14 18:10</span>
+            </div>
+   			<div class="board-item">
+                <a href="#">[공지] 회원 가입 안내</a>
+                <span class="date">홍길동 | 2024.11.14 18:10</span>
+            </div>
+   			<div class="board-item">
+                <a href="#">[공지] 회원 가입 안내</a>
+                <span class="date">홍길동 | 2024.11.14 18:10</span>
+            </div>
    
-       		<!-- 글쓰기 버튼 -->
-		<div class="write-btn-container">
-			<a class="write-btn" href="<%=request.getContextPath()%>/board/boardWrite.aws">글쓰기</a>
-		</div>
-		
-        <!-- 페이지네이션 (페이지 이동) -->
-        <div class="pagination">
-            <a href="#" class="prev">◀</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#" class="next">▶</a>
+	       	 <!-- 글쓰기 버튼과 페이지네이션을 포함할 컨테이너 -->
+       		 <div class="bottom-container">
+            <!-- 글쓰기 버튼 -->
+            <div class="write-btn-container">
+                <a class="write-btn" href="<%=request.getContextPath()%>/board/boardWrite.aws">글쓰기</a>
+            </div>
+
+            <!-- 페이지네이션 (페이지 이동) -->
+            <div class="pagination">
+                <a href="#" class="prev">◀</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#" class="next">▶</a>
+            </div>
         </div>
     </div>
-
+</div>
 
 
 

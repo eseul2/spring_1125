@@ -50,5 +50,13 @@ public class BoardController {
 		String path = "WEB-INF/board/boardModify";
 		return path;
 	}
+	
+	// 글 수정 화면 가기 
+	@RequestMapping(value= "test.aws", method=RequestMethod.GET)
+	public String test() {
+		
+		String path = "WEB-INF/board/test";
+		return path;
+	}
 
 }

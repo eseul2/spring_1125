@@ -24,6 +24,7 @@
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
+			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>
 		</ul>
 	</nav>
 <div class="separator"></div>
@@ -135,6 +136,14 @@
 		<a href="#">5</a>
 		<a href="#" class="next">▶</a>
 	</div>
+	
+	
+	<!-- 글쓰기 버튼 (관리자만 보이게) -->
+<%-- <% if (grade.equals("admin")) { %> --%>
+  <div class="write-button-container">
+    <a href="<%= request.getContextPath()%>/monthly/monthlyWrite.aws" class="write-button">글쓰기</a>
+  </div>
+<%-- <% } %> --%>
 
 
 

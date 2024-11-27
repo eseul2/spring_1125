@@ -24,6 +24,7 @@
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
+			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>
 		</ul>
 	</nav>
 <div class="separator"></div>
