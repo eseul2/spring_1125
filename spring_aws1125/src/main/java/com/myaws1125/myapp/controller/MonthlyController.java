@@ -20,7 +20,15 @@ public class MonthlyController {
 			
 		String path = "WEB-INF/monthly/monthlyList";
 		return path;
-		}
+	}
+	
+	// 글쓰기 화면 
+	@RequestMapping(value= "monthlyWrite.aws", method=RequestMethod.GET)
+	public String monthlyWrite() {
+			
+		String path = "WEB-INF/monthly/monthlyWrite";
+		return path;
+	}
 		
 
 }

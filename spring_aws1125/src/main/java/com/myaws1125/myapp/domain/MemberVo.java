@@ -10,11 +10,13 @@ public class MemberVo {
 	private String membername;
 	private String memberemail;
 	private String membergender;
+	private String delyn;
 	private String memberbirth;
 	private String regdate;
-	private String grade; // 회원등급
-	private String delyn;
+	private String grade;
+	private String filename;
 	private String ip;
+	
 	
 	
 	
@@ -62,6 +64,12 @@ public class MemberVo {
 	public void setMembergender(String membergender) {
 		this.membergender = membergender;
 	}
+	public String getDelyn() {
+		return delyn;
+	}
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
+	}
 	public String getMemberbirth() {
 		return memberbirth;
 	}
@@ -80,11 +88,11 @@ public class MemberVo {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public String getDelyn() {
-		return delyn;
+	public String getFilename() {
+		return filename;
 	}
-	public void setDelyn(String delyn) {
-		this.delyn = delyn;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	public String getIp() {
 		return ip;
@@ -92,9 +100,5 @@ public class MemberVo {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
-	
-	
-	
 	
 }

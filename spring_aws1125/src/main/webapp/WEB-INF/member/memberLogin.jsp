@@ -6,6 +6,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>로그인</title>
 <link href= "<%=request.getContextPath()%>/resources/css/loginStyle.css" type-"text/css" rel="stylesheet" >
+
+<script>
+
+//아이디 비밀번호 유효성 검사 
+function check() {
+	// 이름으로 객체찾기
+	let memberid = document.getElementsByName("memberid"); //배열처럼 방에 들어간다. 
+	let memberpw = document.getElementsByName("memberpw");
+
+	if(memberid[0].value=="") {
+		alert("아이디를 입력해주세요");
+		memeberid[0].focus();
+		return;
+	}else if(memberpw[0].value=="") {
+		alert("비밀번호를 입력해주세요");
+		memberpw[0].focus();
+		return;
+	}
+	var fm = document.frm;
+	fm.action="<%=request.getContextPath()%>/member/memberLoginAction.aws";  //가상경로 지정. 액션은 처리한다는 의미 
+	fm.method="post"; // 메소드는 포스트 방식으로 할거다
+	fm.submit(); //서브밋을 사영해소 이동시틸거다
+	
+	return;
+}
+</script>
+
 </head>
 <body>
 
@@ -34,10 +61,10 @@
     <div class="container">
         <h1 class="site-name">로그인하기</h1>
         <div class="login-box">
-            <form action="/main" method="post">
-                <input type="text" name="memberid" placeholder="아이디" required>
-                <input type="password" name="memberpw" placeholder="비밀번호" required>
-                <button type="submit">로그인 하기</button>
+            <form name="frm" >
+                <input type="text" name="memberid" placeholder="아이디">
+                <input type="password" name="memberpw" placeholder="비밀번호">
+                <button type="button" value="로그인하기" onclick="check();">로그인 하기</button>
             </form>
             <div class="links">
                 <a href="/find-id">아이디찾기</a> |

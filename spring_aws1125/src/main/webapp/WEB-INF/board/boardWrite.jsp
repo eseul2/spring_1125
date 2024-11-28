@@ -47,7 +47,7 @@
         <!-- 첨부파일 업로드 버튼 -->
         <div class="form-group">
             <label for="file">첨부파일:</label>
-            <input type="file" id="file" name="file">
+            <input type="filename" id="filename" name="file">
         </div>
 
         <!-- 저장하기 버튼 -->
