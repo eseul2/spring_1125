@@ -35,7 +35,7 @@ public class MemberController {
 	
 	// 메인페이지
 	@RequestMapping(value= "main.aws", method=RequestMethod.GET)
-	public String test() {
+	public String main() {
 		
 		String path = "WEB-INF/member/main";
 		return path;
@@ -97,6 +97,69 @@ public class MemberController {
 		return obj;
 	}	
 	
+	
+	
+	@RequestMapping(value="memberLoginAction.aws", method=RequestMethod.POST)
+	public String memberLoginAction(
+			@RequestParam("memberid") String memberid, 
+			@RequestParam("memberpw") String memberpw,
+			RedirectAttributes rttr, // 리다이렉트 시 일회성 데이터를 전달하기 위한 객체
+			HttpSession session		// 세션 객체, 로그인 상태를 유지하는 데 사용
+			) {
+		
+		MemberVo mv = memberService.memberLoginCheck(memberid);
+		//저장된 비밀번호를 가져온다. 
+		
+		// 로그인 후 이동할 경로 초기화
+		String path = "";
+		if(mv != null) { // 회원 정보가 존재할 경우
+		String reservedPw = mv.getMemberpw();  // 저장된 비밀번호를 가져옴
+		
+		 // 입력한 비밀번호와 저장된 비밀번호를 비교
+		 if(bCryptPasswordEncoder.matches(memberpw, reservedPw)) { // 비밀번호가 일치할 경우
+			 //System.out.println("비밀번호 일치");
+			 rttr.addAttribute("midx",mv.getMidx());
+			 rttr.addAttribute("memberId",mv.getMemberid());
+			 rttr.addAttribute("memberName",mv.getMembername());
+			 
+			// 로그인 요청 이전 페이지가 세션에 저장되어 있는지 확인
+			 logger.info("saveUrl==> " + session.getAttribute("saveUrl"));
+			 
+			 if(session.getAttribute("saveUrl") != null) {
+				 // 이전 페이지로 리다이렉트
+				 path ="redirect:"+ session.getAttribute("saveUrl").toString();
+			 }else {
+				// 기본 페이지로 리다이렉트
+				 path ="redirect:/";
+			 }
+			 
+		  }else {
+			  // 비밀번호가 일치하지 않을 경우 경고 메시지를 설정하고 로그인 페이지로 리다이렉트
+			  rttr.addFlashAttribute("msg","아이디/비밀번호를 확인해주세요");
+			  path = "redirect:/member/memberLogin.aws";
+		  }
+		}else {
+			  // 아이디에 해당하는 회원 정보가 없을 경우 경고 메시지 설정 후 로그인 페이지로 리다이렉트
+			  rttr.addFlashAttribute("msg","해당하는 아이디가 없습니다."); //일회성 메소드 메세지가 한 번만 나온다
+			path = "redirect:/member/memberLogin.aws";
+		}
+		//회원정보를 세션에 담는다.
+		return path;
+	}	
+	
+	
+	// 로그아웃 기능. 
+	@RequestMapping(value="memberLogout.aws", method=RequestMethod.GET)
+	public String memberLogout(HttpSession session) {
+
+		session.removeAttribute("midx");
+		session.removeAttribute("memberName"); // 다 지운다.
+		session.removeAttribute("memberId");
+		session.invalidate(); // 세션에 저장된 모든 속성(attribute)이 삭제.
+		
+		// 회원 목록을 보여줄 뷰 페이지 경로 반환
+		return "redirect:/";
+	}
 	
 	
 

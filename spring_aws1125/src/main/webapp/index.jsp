@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <%-- <!-- 값이 비어있지 않으면 -->
 <c:if test="${!empty midx}">
 ${memberName}&nbsp;

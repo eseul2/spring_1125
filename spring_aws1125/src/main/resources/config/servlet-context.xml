@@ -31,6 +31,34 @@
 	<beans:property name="maxUploadSize" value="10485760" />	
 	</beans:bean> -->
 	
+	
+	
+	<!-- LoginInterceptor를 빈으로 등록 -->
+	<beans:bean id="loginInterceptor" class="com.myaws1125.myapp.interceptor.LoginInterceptor">
+	</beans:bean>
+	<!-- AuthInterceptor를 빈으로 등록 -->
+	<beans:bean id="authInterceptor" class="com.myaws1125.myapp.interceptor.AuthInterceptor">
+	</beans:bean>
+	
+	<!-- 회원정보 세션에 담기 -->
+	<interceptors>
+	<interceptor>
+     <!-- loginInterceptor가 /member/memberLoginAction.aws 경로에 적용되도록 설정 -->
+	<mapping path="/member/memberLoginAction.aws"/>
+	<beans:ref bean = "loginInterceptor"/>
+	</interceptor>
+	</interceptors>
+	
+	<!-- 이 경로에 들어가면 로그인 페이지로 자동 이동하도록 설정하기  -->
+	<interceptors>
+	<interceptor>
+	<mapping path="/board/boardWrite.aws"/>
+	<mapping path="/board/boardModify.aws"/>
+	<mapping path="/board/boardDelete.aws"/>
+	<beans:ref bean = "authInterceptor"/>
+	</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.myaws1125.myapp.controller" />
 	
 	

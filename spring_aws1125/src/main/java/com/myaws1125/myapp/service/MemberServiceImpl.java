@@ -29,6 +29,13 @@ public class MemberServiceImpl implements MemberService {
 		int value = mm.memberIdCheck(memberId);
 		return value;
 	}
+
+	@Override
+	public MemberVo memberLoginCheck(String memberId) {
+		
+		MemberVo mv = mm.memberLoginCheck(memberId);
+		return mv;
+	}
 	
 	
 	

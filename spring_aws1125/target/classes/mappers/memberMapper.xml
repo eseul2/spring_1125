@@ -14,6 +14,10 @@
 select count(*) as cnt from member where memberid =#{memberid}
 </select>
 
+<select id="memberLoginCheck" parameterType="String" resultType="mv">
+select * from member where memberid = #{memberid}
+</select>
+
 
 
 </mapper>
