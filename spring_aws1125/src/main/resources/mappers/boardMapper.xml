@@ -33,12 +33,32 @@
 </select>
 
 
-
-   <!-- 게시글 총 개수를 조회하는 쿼리 -->
+<!-- 게시글 총 개수를 조회하는 쿼리 -->
 <select id ="boardTotalCount" parameterType="scri" resultType="int">
 select count(*) as cnt from board where delyn='N'
 <include refid="search"/> <!-- 검색 필터링 조건 포함 -->
 </select>
+
+
+<!-- 새로운 게시물 추가하는 쿼리 -->
+<insert id="boardInsert" parameterType="bv">
+insert into board(subject, contents, midx, writer, password, filename, ip)
+values(#{subject}, #{contents}, #{midx}, #{writer}, #{password}, #{uploadedFilename}, #{ip})
+</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </mapper>
