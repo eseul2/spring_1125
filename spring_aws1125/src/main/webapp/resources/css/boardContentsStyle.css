@@ -80,7 +80,6 @@
 
 
 
-
 /* 글 상세 내용 박스, 댓글 내용 박스 */
 .post-box, .content-box {
     width: 50%; /* 화면 너비의 80% */
@@ -113,6 +112,18 @@
     border-top: 1px solid #ddd; /* 연한 회색 구분선 */
     margin: 20px 0; /* 상하 여백 */
 }
+
+
+/* 조회수 스타일 (왼쪽에 독립적으로 배치) */
+.view-count {
+    font-size: 14px; /* 작은 글씨 */
+    color: #555; /* 회색 */
+    margin-bottom: 5px; /* 아래쪽 여백 추가 */
+    font-weight: bold; /* 글씨 두껍게 */
+}
+
+
+
 
 /* 수정, 삭제 링크 */
 .edit-delete {
@@ -159,77 +170,118 @@
 
 
 
-.comment-item {
-    margin-bottom: 5px; /* 댓글 간 여백 줄이기 */
-    padding-bottom: 5px; /* 아래쪽 여백 줄이기 */
-    border-bottom: 1px solid #ddd; /* 댓글 간 구분선 */
+
+/* 이미지 스타일 */
+.file-image {
+    max-width: 100%; /* 이미지 크기 조정 */
+    height: auto; /* 비율 유지 */
+    display: block; /* 이미지를 블록으로 표시하여 아래 여백 없애기 */
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
-.comment-item:last-child {
-    border-bottom: none; /* 마지막 댓글은 구분선 없애기 */
-}
-
-.comment-author {
-    font-weight: bold; /* 댓글 작성자 이름 굵게 */
-    font-size: 14px; /* 작은 글씨 */
-}
-
-.comment-date {
-    font-size: 12px; /* 더 작은 글씨 */
-    color: #777; /* 회색 글씨 */
-}
-
-/* 댓글 쓰기 박스 스타일 */
-.comment-content {
-    font-size: 14px; /* 댓글 내용 크기 */
-    margin: 5px 0; /* 상하 여백 줄이기 */
-}
-
-
-/* 댓글 쓰기 폼 컨테이너 */
-form {
-    display: flex; /* 입력 창과 버튼을 가로로 배치 */
-    align-items: center; /* 세로 가운데 정렬 */
-    gap: 10px; /* 입력 창과 버튼 사이 간격 */
-    justify-content: center; /* 가로 중앙 정렬 */
-    margin-top: 10px; /* 위쪽 여백 */
-}
-
-/* 댓글 입력 창 */
-textarea[name="commentContent"] {
-    flex: 1; /* 입력 창이 가능한 넓은 공간 차지 */
+/* 다운로드 링크 스타일 */
+.fileDown {
+    display: inline-block;
+    padding: 8px 16px; /* 여백 */
+    background-color: black; /* 파란색 배경 */
+    color: white; /* 흰색 글씨 */
     font-size: 14px; /* 글씨 크기 */
-    padding: 10px; /* 안쪽 여백 */
-    border: 1px solid #ddd; /* 테두리 */
-    border-radius: 8px; /* 둥근 테두리 */
-    resize: none; /* 크기 조정 금지 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    border-radius: 4px; /* 약간 둥근 모서리 */
+    margin-top: 10px; /* 이미지와 간격 */
+    transition: background-color 0.2s ease; /* 배경색 애니메이션 */
 }
 
-/* 댓글 작성 버튼 */
-button[type="submit"] {
-    font-size: 16px; /* 글자 크기 */
-    padding: 10px 20px; /* 안쪽 여백 */
-    background-color: black; /* 버튼 배경색 */
+/* 다운로드 링크에 마우스를 올렸을 때의 스타일 */
+.fileDown:hover {
+    background-color: gray; /* 어두운 파란색 */
+}
+
+
+
+
+.replyTable {
+    width: 100%; /* 테이블 너비를 화면에 맞춤 */
+    border-collapse: collapse; /* 테두리 중첩 제거 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+    font-size: 14px; /* 글자 크기 설정 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+.replyTable th, .replyTable td {
+    padding: 10px; /* 셀 안쪽 여백 */
+}
+
+.replyTable .content {
+    text-align: left; /* 댓글 내용은 왼쪽 정렬 */
+}
+
+.replyTable button {
+    background-color: black; /* 삭제 버튼 색상 */
     color: white; /* 버튼 텍스트 색상 */
-    border: none; /* 테두리 제거 */
-    border-radius: 8px; /* 둥근 테두리 */
+    border: none; /* 기본 테두리 제거 */
+    padding: 5px 10px; /* 버튼 여백 */
     cursor: pointer; /* 마우스 포인터 변경 */
-    transition: background-color 0.3s ease; /* 호버 효과 */
 }
 
-button[type="submit"]:hover {
-    background-color: gray; /* 호버 시 더 어두운 파란색 */
+.replyTable button:hover {
+    background-color: #c0392b; /* 버튼 호버 색상 */
 }
 
-.comment-delete {
-    font-size: 12px; /* 작은 글씨 */
-    color: #ff0000; /* 빨간색 */
-    cursor: pointer; /* 클릭 가능 표시 */
+
+.replyTable tr {
+    border-bottom: 1px solid #ddd; /* 각 댓글 행의 하단에 구분선 추가 */
 }
 
-.comment-delete:hover {
-    text-decoration: underline; /* 마우스를 올리면 밑줄 */
+.replyTable tr:last-child {
+    border-bottom: none; /* 마지막 댓글에는 구분선이 안 보이도록 설정 */
 }
+
+
+
+
+
+/* 댓글 작성 폼 스타일 */
+form[name="frm"] {
+    margin-top: 20px; /* 위쪽 여백 */
+    padding: 10px; /* 폼 안쪽 여백 */
+}
+
+/* 댓글 작성자 입력창 스타일 */
+.commentWriter input[type="text"] {
+    width: 80px; /* 작성자 입력창 너비 */
+    border: 1px solid #ddd; /* 테두리 색상 */
+    padding: 5px; /* 안쪽 여백 */
+    font-size: 14px; /* 글자 크기 */
+    margin-right: 10px; /* 작성자 입력창과 댓글 내용 사이 여백 */
+}
+
+/* 댓글 내용 입력창 스타일 */
+#ccontents {
+    width: 400px; /* 댓글 입력창 너비 */
+    padding: 10px; /* 안쪽 여백 */
+    font-size: 14px; /* 글자 크기 */
+    border: 1px solid #ddd; /* 테두리 색상 */
+    border-radius: 5px; /* 테두리 둥글게 처리 */
+}
+
+/* 댓글 버튼 스타일 */
+.replyBtn {
+    background-color: #333; /* 버튼 배경색 */
+    color: white; /* 버튼 글자 색상 */
+    border: none; /* 기본 테두리 제거 */
+    padding: 9px 12px; /* 버튼 여백 */
+    font-size: 14px; /* 글자 크기 */
+    cursor: pointer; /* 마우스 포인터 변경 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 처리 */
+    margin-left: 2px; /* 버튼과 입력창 사이 여백 */
+}
+
+/* 댓글 버튼 hover 스타일 */
+.replyBtn:hover {
+    background-color: gray; /* 버튼 hover 색상 */
+}
+
 
 
 

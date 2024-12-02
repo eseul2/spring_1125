@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,12 +72,17 @@ slides.forEach((slide, index) => {
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
 			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
 			<!-- 회원번호가 있으면 담아놓은 회원이름을 출력하고 로그아웃 버튼을 만들어놓는다. -->
-			<li><% if(session.getAttribute("midx")!= null) {
-			out.println(session.getAttribute("memberName") + " 로그아웃");
-			}%></li>
+			<li><!-- 값이 비어있지 않으면 -->
+				<c:if test="${!empty midx}">
+					${memberName}&nbsp;
+				<a href='${pageContext.request.contextPath}/member/memberLogout.aws'>님,로그아웃</a> 
+				</c:if>
+			</li>
 			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>
 		</ul>
 	</nav>
+	
+	
 <div class="separator"></div>
 </header>
 

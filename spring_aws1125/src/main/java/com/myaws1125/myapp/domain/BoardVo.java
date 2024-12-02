@@ -15,7 +15,7 @@ public class BoardVo {
 	private String subject;
 	private String writer;
 	private String password;
-	//private String filename;
+	private String filename;
 	private String uploadedFilename;
 	
 	
@@ -92,10 +92,6 @@ public class BoardVo {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	/*
-	 * public String getFilename() { return filename; } public void
-	 * setFilename(String filename) { this.filename = filename; }
-	 */
 	
 	public String getUploadedFilename() {
 		return uploadedFilename;
@@ -108,6 +104,12 @@ public class BoardVo {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	
 	

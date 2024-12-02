@@ -45,7 +45,7 @@ public class MemberController {
 	// 로그인 페이지 
 	@RequestMapping(value= "memberLogin.aws", method=RequestMethod.GET)
 	public String memberLogin() {
-		System.out.println("멤버 로그인");
+		//System.out.println("멤버 로그인");
 		String path = "WEB-INF/member/memberLogin";
 		return path; 
 	}
@@ -63,7 +63,7 @@ public class MemberController {
 	@RequestMapping(value="memberJoinAction.aws",method=RequestMethod.POST)
 	public String memberJoinAction(MemberVo mv) {
 		
-		System.out.println("멤버 로그인 액션 ");
+		//System.out.println("멤버 로그인 액션 ");
 		// 넘어온 비밀번호를 비밀번호 암호화 시키기
 		String memberpw_enc = bCryptPasswordEncoder.encode(mv.getMemberpw());
 		// 암호화 시킨 비밀번호를 다시 넘기기
@@ -107,7 +107,7 @@ public class MemberController {
 			RedirectAttributes rttr, // 리다이렉트 시 일회성 데이터를 전달하기 위한 객체
 			HttpSession session		// 세션 객체, 로그인 상태를 유지하는 데 사용
 			) {
-		System.out.println("멤버 로그인 액션 ");
+		//System.out.println("멤버 로그인 액션 ");
 		MemberVo mv = memberService.memberLoginCheck(memberid);
 		//저장된 비밀번호를 가져온다. 
 		

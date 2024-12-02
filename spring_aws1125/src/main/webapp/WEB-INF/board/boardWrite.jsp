@@ -35,6 +35,14 @@ function check() {
 		alert("내용을 입력해주세요");
 		fm.contents.focus(); 
 		return;
+	}else if(fm.writer.value =="") {
+		alert("작성자를 입력해주세요");
+		fm.writer.focus(); 
+		return;
+	}else if(fm.password.value =="") {
+		alert("비밀번호를 입력해주세요");
+		fm.password.focus(); 
+		return;
 	}
 	
 	var ans = confirm("저장하시겠습니까?");  // 함수의 값은 참과 거짓 true false로 나눈다. 
@@ -90,7 +98,7 @@ function check() {
         <div class="form-group file-writer-password">
             <div>
                 <label for="file">📁첨부파일:</label>
-                <input type="file" id="filename" name="filename">
+                <input type="file" id="attachfile" name="attachfile">
             </div>
             <div>
                 <label for="writer">작성자</label>

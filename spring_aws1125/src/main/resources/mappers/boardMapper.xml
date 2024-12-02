@@ -47,6 +47,33 @@ values(#{subject}, #{contents}, #{midx}, #{writer}, #{password}, #{uploadedFilen
 </insert>
 
 
+<!-- 게시물 상세 내용 보여주는 쿼리 -->
+<select id="boardSelectOne" parameterType="int" resultType="bv">
+select * from board where delyn='N' and bidx= #{bidx}
+</select>
+
+
+<!-- 조회수 올리기 쿼리 --> 
+<update id="boardViewCntUpdate" parameterType="int" >
+update board SET viewcnt = viewcnt+1 where bidx = #{bidx}
+</update>
+
+
+<!-- 게시물 삭제하는 쿼리 구문 -->
+<update id="boardDelete" parameterType="HashMap">
+update board set delyn='Y', modifyday=now() where bidx= #{bidx} and midx=#{midx} and password=#{password}
+</update>
+
+
+<!-- 게시물 수정 쿼리 --> 
+<update id="boardUpdate" parameterType="bv">
+update board set subject =#{subject}, contents =#{contents}, writer=#{writer}, modifyday= now(),filename=#{uploadedFilename} 
+where bidx=#{bidx} and password=#{password} and midx=#{midx}
+</update>
+
+
+
+
 
 
 

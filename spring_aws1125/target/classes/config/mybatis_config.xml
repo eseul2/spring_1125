@@ -5,7 +5,8 @@
 <configuration> 
 <typeAliases>
  <typeAlias alias="mv" type="com.myaws1125.myapp.domain.MemberVo"/>
-  <typeAlias alias="bv" type="com.myaws1125.myapp.domain.BoardVo"/>
+ <typeAlias alias="bv" type="com.myaws1125.myapp.domain.BoardVo"/>
+ <typeAlias alias="cv" type="com.myaws1125.myapp.domain.CommentVo"/>
  <typeAlias alias="scri" type="com.myaws1125.myapp.domain.SearchCriteria"/>
 
 </typeAliases>
