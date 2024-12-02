@@ -135,7 +135,11 @@
 
 
 
-
+.card-link {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 요소의 색상 상속 */
+  display: block; /* 블록 요소로 설정해 카드 전체를 클릭 가능 */
+}
 
 
 

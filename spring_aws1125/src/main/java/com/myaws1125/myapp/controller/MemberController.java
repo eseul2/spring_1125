@@ -123,6 +123,9 @@ public class MemberController {
 			 rttr.addAttribute("memberId",mv.getMemberid());
 			 rttr.addAttribute("memberName",mv.getMembername());
 			 
+			 // **등급을 세션에 저장**
+			 session.setAttribute("grade", mv.getGrade());
+			 
 			// 로그인 요청 이전 페이지가 세션에 저장되어 있는지 확인
 			// logger.info("saveUrl==> " + session.getAttribute("saveUrl"));
 			 

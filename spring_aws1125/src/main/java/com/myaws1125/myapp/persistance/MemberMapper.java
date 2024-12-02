@@ -1,5 +1,4 @@
 package com.myaws1125.myapp.persistance;
-
 import com.myaws1125.myapp.domain.MemberVo;
 
 

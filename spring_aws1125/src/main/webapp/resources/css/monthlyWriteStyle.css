@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+
+/* 폼 전체를 가운데 정렬 */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 각 입력 요소와 버튼 간 간격 */
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* 제목 입력 필드 스타일 */
+.input-title {
+    width: 850px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+/* 내용 입력 필드 스타일 */
+.textarea-content {
+    width: 300px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+/* 제출 버튼 스타일 */
+.submit-button {
+    width: 100px;
+}

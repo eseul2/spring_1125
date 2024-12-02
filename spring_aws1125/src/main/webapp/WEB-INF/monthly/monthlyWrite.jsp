@@ -39,20 +39,42 @@ tinymce.init({
         console.log("붙여넣기 처리 중:", args.node.innerHTML);
     }
 });
+
+
+function check() {
+
+	var fm = document.frm;
+	
+	if(fm.msubject.value == "") {
+		alert("제목을 입력해주세요");
+		fm.msubject.focus();  // 커서가 입력안한 해당 자리로 갈수 있도록 
+		return;
+	}
+	
+	var ans = confirm("저장하시겠습니까?");
+	
+	
+	if(ans == true) {	
+		fm.action="<%=request.getContextPath()%>/monthly/monthlyWriteAction.aws"; 
+		fm.method="post"; 
+		fm.submit();	//파일 업로드를 포함한 폼 데이터를 전송할 때 필요한 인코딩 방식을 지정
+	}
+		return; 
+}
 </script>
 
 </head>
 <body>
 
-<form method="post" action="submit.jsp" style="display: flex; flex-direction: column; justify-content: center; height: 100vh; align-items: center;">
-    <div style="margin-bottom: 10px;">
-        <label for="subject">제목:</label>
-        <input type="text" id="msubject" name="msubject" style="width: 850px; height: 40px; margin-top: 5px;">
-    </div>
-    <textarea name="mcontents" style="width: 300px; height: 150px; margin-bottom: 10px;"></textarea>
-    <button type="submit" style="width: 100px;">제출</button>
-</form>
-
+    <form name="frm" class="form-container">
+        <div class="form-group">
+        
+            <label for="subject">제목:</label>
+            <input type="text" id="msubject" name="msubject" class="input-title">
+        </div>
+        <textarea name="mcontents" class="textarea-content"></textarea>
+        <button type="button" class="submit-button" onclick="check();">제출</button>
+    </form>
 </body>
 </html>
 
