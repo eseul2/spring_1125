@@ -29,7 +29,7 @@ function confirmDelete(mbidx) {
 
 <header class="header">
 	<div class="logo">
-		빵지순례
+		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
 	</div>
 <div class="separator"></div>
         

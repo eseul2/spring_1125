@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,7 @@ slides.forEach((slide, index) => {
 
 <header class="header">
 	<div class="logo">
-		빵지순례
+		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
 	</div>
 <div class="separator"></div>
         
@@ -74,7 +75,16 @@ slides.forEach((slide, index) => {
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
-			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
+			<!-- 회원번호가 있으면 담아놓은 회원이름을 출력하고 로그아웃 버튼을 만들어놓는다. -->
+			<li><!-- 값이 비어있지 않으면 -->
+				<c:if test="${!empty midx}">
+					${memberName}님,
+				<a href='${pageContext.request.contextPath}/member/memberLogout.aws'>로그아웃</a> 
+				</c:if>
+				<c:if test="${empty midx}">
+				<a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a>
+				</c:if>
+			</li>
 			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>
 		</ul>
 	</nav>
@@ -125,7 +135,14 @@ slides.forEach((slide, index) => {
         <div class="card" onclick="openModal('bakery1')">
             <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 1">
             <div class="card-content">
+            <div class="title-container">
                 <h3><strong>빵집 이름 1</strong></h3>
+				<!-- 북마크 버튼 -->
+  				<button class="bookmark-btn" data-review-id="1">
+    			<span class="bookmark-icon">&#9825;</span> <!-- 빈 하트 -->
+  				</button>
+  			</div>
+  			
                 <!-- 가로 구분선 -->
 				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <p>서울 강남구의 베이커리로, 바게트가 유명합니다!</p>
@@ -134,7 +151,14 @@ slides.forEach((slide, index) => {
         <div class="card" onclick="openModal('bakery2')">
             <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 2">
             <div class="card-content">
+            <div class="title-container">
                 <h3><strong>빵집 이름 2</strong></h3>
+                <!-- 북마크 버튼 -->
+  				<button class="bookmark-btn" data-review-id="1">
+    			<span class="bookmark-icon">&#9825;</span> <!-- 빈 하트 -->
+  				</button>
+  			</div>
+                
 				<!-- 가로 구분선 -->
 				<hr class="freview"> <!-- 미리보기 구분선 -->
                 <div class="contact-info">
