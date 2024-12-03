@@ -1,23 +1,35 @@
 package com.myaws1125.myapp.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.myaws1125.myapp.domain.BoardVo;
 import com.myaws1125.myapp.domain.MonthlyVo;
 import com.myaws1125.myapp.domain.PageMaker;
 import com.myaws1125.myapp.domain.SearchCriteria;
 import com.myaws1125.myapp.service.MonthlyService;
+import com.myaws1125.myapp.util.MediaUtils;
+import com.myaws1125.myapp.util.UploadFileUtiles;
 
 @Controller
 @RequestMapping(value="/monthly/")
@@ -35,9 +47,11 @@ public class MonthlyController {
 	@Autowired(required = false) 
 	private PageMaker pm;
 	
+	@Resource(name="uploadPath") // 리소스는 사용할 때 name값을 서블릿.xml 빈에 등록된 id이름으로 넣어야한다. 이름이 같은 애를 찾아서 주입.
+	private String uploadPath;
 	
 	
-	
+
 	
 	//게시글 목록을 조회하고 검색 조건에 맞는 게시글을 화면에 표시하는 메서드
 	@RequestMapping(value="monthlyList.aws", method=RequestMethod.GET)
@@ -80,11 +94,19 @@ public class MonthlyController {
 	// 글쓰기 처리 
 	@RequestMapping(value= "monthlyWriteAction.aws")
     public String monthlyWriteAction(
-            MonthlyVo monv, // 게시글 정보를 담고 있는 객체
+    		MonthlyVo monv, // 게시글 정보를 담고 있는 객체
+            @RequestParam("attachfile") MultipartFile attachfile, // 업로드된 파일을 받기 위한 MultipartFile 객체
             HttpServletRequest request,
-            RedirectAttributes rttr) {
+            RedirectAttributes rttr
+            )throws Exception {
+			MultipartFile file = attachfile; //저장된 파일 이름 꺼내기 
+			String uploadedFileName=""; // 파일이 업로드된 후 저장된 파일명을 저장할 변수
+			
+			if(! file.getOriginalFilename().equals("")) { // 해당 파일이 존재한다면
+				 // 파일을 서버에 저장하고 저장된 파일 이름을 반환받음
+				uploadedFileName = UploadFileUtiles.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+			}
 
-        System.out.println("monthlyWriteAction 들어옴");
 
         // 사용자 정보 설정
         String midx = request.getSession().getAttribute("midx").toString();
@@ -92,10 +114,11 @@ public class MonthlyController {
 
         // BoardVo 객체에 데이터 설정
         monv.setMidx(midx_int);
+        monv.setUploadedFilename(uploadedFileName);  // vo에 담아서 가져가기
 
         // 게시글 삽입 서비스 호출
         int value = monthlyService.monthlyInsert(monv);
-        System.out.println("value===" + value);
+        //System.out.println("value===" + value);
 
         // 리다이렉트 경로 설정
         String path = "";
@@ -107,6 +130,80 @@ public class MonthlyController {
         }
         return path;
     }
+	
+	
+	// 이달의빵집 글 내용 화면 가기 
+	@RequestMapping(value= "monthlyContents.aws")
+	public String monthlyContents(@RequestParam("mbidx") int mbidx, Model model) {
+		
+		monthlyService.monthlyViewCntUpdate(mbidx); // 조회수 올리기
+		MonthlyVo monv = monthlyService.monthlySelectOne(mbidx);
+		model.addAttribute("monv", monv);
+		
+		String path = "WEB-INF/monthly/monthlyContents";
+		return path;
+	}	
+	
+	
+	
+	
+	
+	
+	// 이미지 
+	@RequestMapping(value="/displayFile.aws", method=RequestMethod.GET)
+	public ResponseEntity<byte[]> displayFile(
+			@RequestParam("fileName") String fileName,
+			@RequestParam(value="down", defaultValue="0") int down   // 화면에 보여줄 것인가. 다운로드 하게 할 것인가?
+			) {
+		
+		ResponseEntity<byte[]> entity = null;  //객체를 담는 애인데 byte계열을 다 담는다. 
+		InputStream in = null;	// 데이터의 수로와 같은데, 처음에 읽어들이는 시작점이 InputStream
+		
+		try{
+			String formatName = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자가 무엇인지 물어본다.
+			MediaType mType = MediaUtils.getMediaType(formatName); // 위에서 확장자를 꺼내서 미디어 유틸이라는 곳에 넣는다. 왜냐면 여기서 확장자가 무엇인지 타입을 알기 위해서 (png,jpg)
+			
+			HttpHeaders headers = new HttpHeaders();		
+			 
+			in = new FileInputStream(uploadPath+fileName);  // 위에서 초기화한 애를 객체생성시켜서 해당되는 파일 위치를 
+			
+			
+			if(mType != null){
+				
+				if (down==1) {
+					fileName = fileName.substring(fileName.indexOf("_")+1);
+					headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+					headers.add("Content-Disposition", "attachment; filename=\""+
+							new String(fileName.getBytes("UTF-8"),"ISO-8859-1")+"\"");	
+				}else {
+					headers.setContentType(mType);	
+				}
+			}else{
+				
+				fileName = fileName.substring(fileName.indexOf("_")+1);
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				headers.add("Content-Disposition", "attachment; filename=\""+
+						new String(fileName.getBytes("UTF-8"),"ISO-8859-1")+"\"");				
+			}
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),
+					headers,
+					HttpStatus.CREATED);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}finally{
+			try {
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return entity;
+	}
 
 		
 

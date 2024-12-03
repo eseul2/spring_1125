@@ -3,33 +3,54 @@
 
 /* 폼 전체를 가운데 정렬 */
 .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    display: flex; /* 플렉스박스 레이아웃 사용 */
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    justify-content: center; /* 수직 방향으로 중앙 정렬 */
+    align-items: center; /* 수평 방향으로 중앙 정렬 */
+    height: 100vh; /* 화면 높이의 100% 사용 */
 }
 
 /* 각 입력 요소와 버튼 간 간격 */
 .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* 하단에 10px 간격 추가 */
 }
 
 /* 제목 입력 필드 스타일 */
 .input-title {
-    width: 850px;
-    height: 40px;
-    margin-top: 5px;
+    width: 750px; /* 입력 필드의 너비 설정 */
+    height: 40px; /* 입력 필드의 높이 설정 */
+    margin-top: 5px; /* 상단에 5px 간격 추가 */
 }
 
 /* 내용 입력 필드 스타일 */
 .textarea-content {
-    width: 300px;
-    height: 150px;
-    margin-bottom: 10px;
+    width: 300px; /* 텍스트 영역의 너비 설정 */
+    height: 150px; /* 텍스트 영역의 높이 설정 */
+    margin-bottom: 10px; /* 하단에 10px 간격 추가 */
 }
 
 /* 제출 버튼 스타일 */
 .submit-button {
-    width: 100px;
+    width: 100px; /* 버튼의 너비 설정 */
+    padding: 15px 15px; /* 버튼의 상하좌우 여백 설정 */
+    background-color: black; /* 버튼의 배경색을 검은색으로 설정 */
+    color: white; /* 버튼의 글씨 색상을 흰색으로 설정 */
+    border: none; /* 버튼의 테두리를 제거 */
+    cursor: pointer; /* 마우스를 올렸을 때 포인터 커서로 변경 */
+    transition: background-color 0.3s ease; /* 배경색 변화에 대한 애니메이션 효과 추가 */
+}
+
+/* 첨부파일 입력 필드 스타일 */
+.input-file {
+    width: 850px; /* 첨부파일 입력 필드의 너비 설정 */
+    height: 40px; /* 첨부파일 입력 필드의 높이 설정 */
+    margin-top: 5px; /* 상단에 5px 간격 추가 */
+}
+
+/* 소개글 입력 필드 스타일 */
+.input-introduction {
+    width: 600px; /* 소개글 입력 필드의 너비 설정 */
+    height: 100px; /* 소개글 입력 필드의 높이 설정 */
+    margin-top: 5px; /* 상단에 5px 간격 추가 */
+    margin-bottom: 10px; /* 하단에 10px 간격 추가 */
 }

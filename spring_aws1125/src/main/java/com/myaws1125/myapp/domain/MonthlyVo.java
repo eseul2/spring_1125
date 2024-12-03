@@ -11,11 +11,23 @@ public class MonthlyVo {
 	private String mcontents;
 	private String msubject;
 	private String filename;
+	private String uploadedFilename;
+	private String introduction;
 	
 	
 	
-	
-	
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	public String getUploadedFilename() {
+		return uploadedFilename;
+	}
+	public void setUploadedFilename(String uploadedFilename) {
+		this.uploadedFilename = uploadedFilename;
+	}
 	public String getDelyn() {
 		return delyn;
 	}

@@ -41,9 +41,22 @@ select count(*) as cnt from monthly_bakery where delyn='N'
 
 <!-- 새로운 게시물 추가하는 쿼리 -->
 <insert id="monthlyInsert" parameterType="monv">
-insert into monthly_bakery(msubject, mcontents, midx)
-values(#{msubject}, #{mcontents}, #{midx})
+insert into monthly_bakery(msubject, mcontents, midx, filename,introduction)
+values(#{msubject}, #{mcontents}, #{midx}, #{uploadedFilename}, #{introduction})
 </insert>
+
+
+
+<!-- 게시물 상세 내용 보여주는 쿼리 -->
+<select id="monthlySelectOne" parameterType="int" resultType="monv">
+select * from monthly_bakery where delyn='N' and mbidx= #{mbidx}
+</select>
+
+
+<!-- 조회수 올리기 쿼리 --> 
+<update id="monthlyViewCntUpdate" parameterType="int" >
+update monthly_bakery SET viewcnt = viewcnt+1 where mbidx = #{mbidx}
+</update>
 
 
 

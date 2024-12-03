@@ -1,4 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- 게시물 입력 작성 실패시 띄우는 메세지-->
+<%
+String msg = "";
+if(request.getAttribute("msg") != null) {
+msg = (String)request.getAttribute("msg");
+}
+
+if(msg != "") {  
+out.println("<script>alert('"+msg+"');</script>");
+}
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +70,7 @@ function check() {
 	if(ans == true) {	
 		fm.action="<%=request.getContextPath()%>/monthly/monthlyWriteAction.aws"; 
 		fm.method="post"; 
+		fm.enctype="multipart/form-data";   //파일을 올리기 위해서 지정해야한다. 
 		fm.submit();	//파일 업로드를 포함한 폼 데이터를 전송할 때 필요한 인코딩 방식을 지정
 	}
 		return; 
@@ -68,10 +82,20 @@ function check() {
 
     <form name="frm" class="form-container">
         <div class="form-group">
-        
             <label for="subject">제목:</label>
             <input type="text" id="msubject" name="msubject" class="input-title">
         </div>
+        
+		<div class="form-group">
+            <label for="introduction">소개글:</label>
+            <input type="text" id="introduction" name="introduction" class="input-introduction">
+        </div>
+        
+		<div class="form-group">
+            <label for="file">썸네일:</label>
+            <input type="file" id="attachfile" name="attachfile" class="input-file">
+        </div>
+        
         <textarea name="mcontents" class="textarea-content"></textarea>
         <button type="button" class="submit-button" onclick="check();">제출</button>
     </form>

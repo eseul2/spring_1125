@@ -62,14 +62,14 @@
     <div class="search-container">
 		<select name = "searchType" class="custom-select"> 
         	<option value="subject">제목</option>
-        	<option value="writer">작성자</option>
         	<option value="contents">내용</option>
         </select>
       <input type="text" class="search-input" placeholder="이달의 매거진을 검색할 수 있습니다" name="keyword">
       <button type="submit" class="search-button">&#128269;</button>
     </div>
+ 	</form>
   </div>
-  </form>
+  
 </main>
 
 
@@ -84,10 +84,10 @@
 	%>
 	<a href="<%=request.getContextPath() %>/monthly/monthlyContents.aws?mbidx=<%=monv.getMbidx() %>" class="card-link">
 	<div class="card">
-    <img src="<%= request.getContextPath() %>/resources/images/main.jpg" alt="빵집 이미지 1" class="card-image">
+    <img src="<%= request.getContextPath() %>/monthly/displayFile.aws?fileName=<%=monv.getFilename()%>" alt="썸네일" class="card-image">
     <div class="card-content">
       <h3 class="card-title"><%=monv.getMsubject() %></h3>
-      <p class="card-text"><%=monv.getMcontents() %></p>
+      <p class="card-text"><%=monv.getIntroduction() %></p>
       <p class="card-date"><%=monv.getWriteday() %></p> <!-- 날짜 추가 -->
     </div>
   </div>

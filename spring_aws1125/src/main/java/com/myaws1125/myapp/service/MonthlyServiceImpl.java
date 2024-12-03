@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myaws1125.myapp.domain.BoardVo;
 import com.myaws1125.myapp.domain.MonthlyVo;
 import com.myaws1125.myapp.domain.SearchCriteria;
 import com.myaws1125.myapp.persistance.MonthlyMapper;
@@ -44,18 +45,36 @@ public class MonthlyServiceImpl implements MonthlyService{
 	// 총 게시글 수를 검색 조건에 따라 가져오는 메서드
 	@Override
 	public int monthlyTotalCount(SearchCriteria scri) {
-		// 검색 조건을 통해 BoardMapper에서 총 게시글 수를 조회		
+		// 검색 조건을 통해 Mapper에서 총 게시글 수를 조회		
 		int cnt = monm.monthlyTotalCount(scri);
 		return cnt;
 	}
 
 
-
+	//게시물 추가하기
 	@Override
 	public int monthlyInsert(MonthlyVo monv) {
 		
 		int value = monm.monthlyInsert(monv);
 		return value;	
+	}
+	
+	
+	// 내용보기
+	@Override
+	public MonthlyVo monthlySelectOne(int mbidx) {
+		
+		MonthlyVo monv = monm.monthlySelectOne(mbidx);
+		return monv;
+	}
+
+
+	// 조회수 증가
+	@Override
+	public int monthlyViewCntUpdate(int mbidx) {
+		
+		int cnt = monm.monthlyViewCntUpdate(mbidx);
+		return cnt;
 	}
 	
 	

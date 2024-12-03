@@ -269,14 +269,12 @@ $("#more").click(function(){
         </div>
         
 	
-	<c:if test="${!empty bv.filename}">
-	<img src="${pageContext.request.contextPath}/board/displayFile.aws?fileName=${bv.filename}" class="file-image">
-	</c:if>
-	<P>
-	<a id="dUrl" href="#" class="fileDown">	
-	첨부파일 다운로드
-	</a>
-	</P>
+<c:if test="${!empty bv.filename}">
+    <img src="${pageContext.request.contextPath}/board/displayFile.aws?fileName=${bv.filename}" class="file-image">
+    <P>
+        <a id="dUrl" href="#" class="fileDown">첨부파일 다운로드</a>
+    </P>
+</c:if>
 	
 
         <!-- 목록으로 돌아가기 링크 -->
