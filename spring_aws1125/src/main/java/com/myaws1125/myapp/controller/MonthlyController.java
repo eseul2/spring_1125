@@ -134,15 +134,46 @@ public class MonthlyController {
 	
 	// 이달의빵집 글 내용 화면 가기 
 	@RequestMapping(value= "monthlyContents.aws")
-	public String monthlyContents(@RequestParam("mbidx") int mbidx, Model model) {
+	public String monthlyContents(
+			@RequestParam("mbidx") int mbidx, 
+			Model model,
+			HttpSession session // 회원등급 가져오기
+			) {
+		
+	    // 세션에서 사용자 등급 가져오기
+	    String grade = (String) session.getAttribute("grade");
 		
 		monthlyService.monthlyViewCntUpdate(mbidx); // 조회수 올리기
 		MonthlyVo monv = monthlyService.monthlySelectOne(mbidx);
+	    // 사용자 등급을 모델에 추가하여 뷰에서 활용할 수 있도록 설정
+	    model.addAttribute("grade", grade);
 		model.addAttribute("monv", monv);
+		
 		
 		String path = "WEB-INF/monthly/monthlyContents";
 		return path;
 	}	
+	
+	
+	
+	@RequestMapping(value = "monthlyDelete.aws", method = RequestMethod.GET)
+	public String deleteMonthly(
+			@RequestParam("mbidx") int mbidx){
+		
+	    // 게시글 삭제 서비스 호출
+	    int result = monthlyService.monthlyDelete(mbidx);
+	   
+	    // 삭제 후 목록 페이지로 리다이렉트
+	    return "redirect:/monthly/monthlyList.aws";
+	}
+	
+	
+	
+
+
+	
+	
+	
 	
 	
 	

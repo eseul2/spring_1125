@@ -105,7 +105,7 @@ slides.forEach((slide, index) => {
                뭘 적어야 할지 모르겠네영~~~~~ <br>
                하지만 언젠가 생각이 나겠죠~~~~</p>
               <!-- 버튼을 banner-text 아래에 위치시키기 -->
-        <button onclick="location.href='<%= request.getContextPath()%>/review/reviewList.aws'" class="btn">빵집 찾기</button> 
+        <button onclick="location.href='<%= request.getContextPath()%>/monthly/monthlyList.aws'" class="btn">이달의 빵집 가기</button> 
         </div>
     </div>
 </section>

@@ -76,9 +76,18 @@ public class MonthlyServiceImpl implements MonthlyService{
 		int cnt = monm.monthlyViewCntUpdate(mbidx);
 		return cnt;
 	}
+
+
+
+	// 삭제하기
+	@Override
+	public int monthlyDelete(int mbidx) {
+		
+		int value = monm.monthlyDelete(mbidx);
+		return value;
+	}
 	
-	
-	
+
 	
 	
 }

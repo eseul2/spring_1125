@@ -13,9 +13,16 @@ public class MonthlyVo {
 	private String filename;
 	private String uploadedFilename;
 	private String introduction;
+	private String modifyday;
 	
+
 	
-	
+	public String getModifyday() {
+		return modifyday;
+	}
+	public void setModifyday(String modifyday) {
+		this.modifyday = modifyday;
+	}
 	public String getIntroduction() {
 		return introduction;
 	}

@@ -60,6 +60,10 @@ update monthly_bakery SET viewcnt = viewcnt+1 where mbidx = #{mbidx}
 
 
 
+<!-- 게시물 삭제하는 쿼리 구문 -->
+<update id="monthlyDelete" parameterType="int">
+update monthly_bakery set delyn='Y', modifyday=now() where mbidx = #{mbidx} 
+</update>
 
 
 

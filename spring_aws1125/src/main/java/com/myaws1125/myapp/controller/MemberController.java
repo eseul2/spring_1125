@@ -139,12 +139,18 @@ public class MemberController {
 			 
 		  }else {
 			  // 비밀번호가 일치하지 않을 경우 경고 메시지를 설정하고 로그인 페이지로 리다이렉트
+			  rttr.addAttribute("midx","");
+			  rttr.addAttribute("memberId","");
+			  rttr.addAttribute("memberName","");
 			  rttr.addFlashAttribute("msg","아이디/비밀번호를 확인해주세요");
 			  path = "redirect:/member/memberLogin.aws";
 		  }
 		}else {
 			  // 아이디에 해당하는 회원 정보가 없을 경우 경고 메시지 설정 후 로그인 페이지로 리다이렉트
-			  rttr.addFlashAttribute("msg","해당하는 아이디가 없습니다."); //일회성 메소드 메세지가 한 번만 나온다
+			rttr.addAttribute("midx","");
+			rttr.addAttribute("memberId","");
+			rttr.addAttribute("memberName","");
+			rttr.addFlashAttribute("msg","해당하는 아이디가 없습니다."); //일회성 메소드 메세지가 한 번만 나온다
 			path = "redirect:/member/memberLogin.aws";
 		}
 		//회원정보를 세션에 담는다.

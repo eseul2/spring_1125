@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!-- 게시물 입력 작성 실패시 띄우는 메세지-->
 <%
 String msg = "";

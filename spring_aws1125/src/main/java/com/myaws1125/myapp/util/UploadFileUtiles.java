@@ -51,13 +51,17 @@ public class UploadFileUtiles {
 		System.out.println("formatName:"+formatName);
 		String uploadedFileName = null;
 		
-		if(MediaUtils.getMediaType(formatName) != null){
-			uploadedFileName = makeThumbnail(uploadPath,savedPath, savedName);
-		}else{
-			uploadedFileName = makeIcon(uploadPath,savedPath,savedName);
-		}
+		//if(MediaUtils.getMediaType(formatName) != null){
+		//	uploadedFileName = makeThumbnail(uploadPath,savedPath, savedName);
+		//}else{
+		//	uploadedFileName = makeIcon(uploadPath,savedPath,savedName);
+		//}
 				
 		// 2018/05/03/s-dssddssf-2323423.jpg
+		
+		// 썸네일 저장 안할거임
+		uploadedFileName = (uploadPath + savedPath + File.separator + savedName).substring(uploadPath.length()).replace(File.separatorChar, '/');
+
 		return uploadedFileName;
 	}	
 	
