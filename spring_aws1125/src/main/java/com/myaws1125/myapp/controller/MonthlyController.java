@@ -156,6 +156,7 @@ public class MonthlyController {
 	
 	
 	
+	// 삭제하기 기능
 	@RequestMapping(value = "monthlyDelete.aws", method = RequestMethod.GET)
 	public String deleteMonthly(
 			@RequestParam("mbidx") int mbidx){
@@ -165,6 +166,50 @@ public class MonthlyController {
 	   
 	    // 삭제 후 목록 페이지로 리다이렉트
 	    return "redirect:/monthly/monthlyList.aws";
+	}
+	
+	
+	// 수정하기 화면
+	@RequestMapping(value= "monthlyModify.aws", method=RequestMethod.GET)
+	public String monthlyModify(@RequestParam("mbidx") int mbidx,Model model) {
+			
+		MonthlyVo monv = monthlyService.monthlySelectOne(mbidx);
+		model.addAttribute("monv", monv);
+		
+		String path = "WEB-INF/monthly/monthlyModify";
+		return path;
+	}
+	
+	
+	// 수정하기 처리
+	@RequestMapping(value="monthlyModifyAction.aws")
+	public String monthlyModifyAction(
+			MonthlyVo monv, // 게시글 정보를 담고 있는 Vo 객체를 매개변수로 받음
+			@RequestParam("attachfile") MultipartFile attachfile, // 업로드된 파일을 받기 위한 MultipartFile 객체
+			HttpServletRequest request,
+			RedirectAttributes rttr
+			) throws Exception {
+		
+		MultipartFile file = attachfile; //저장된 파일 이름 꺼내기 
+		String uploadedFileName=""; // 파일이 업로드된 후 저장된 파일명을 저장할 변수
+			
+		if(! file.getOriginalFilename().equals("")) { // 해당 파일이 존재한다면
+			 // 파일을 서버에 저장하고 저장된 파일 이름을 반환받음
+			uploadedFileName = UploadFileUtiles.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+		}		
+		
+		monv.setUploadedFilename(uploadedFileName);  // vo에 담아서 가져가기 
+		
+		//수정 처리
+		int value = monthlyService.monthlyUpdate(monv); // 서비스에서 만든 메서드 호출하기
+		
+		String path="";
+		if(value==0) {
+			path = "redirect:/monthly/monthlyModify.aws?mbidx="+monv.getMbidx(); // 실패했으면 해당 키값을 다시 보여줘야 하기 때문에 bidx를 넘거야 한다
+		}else {
+			path = "redirect:/monthly/monthlyContents.aws?mbidx="+monv.getMbidx();
+		}
+		return path;
 	}
 	
 	

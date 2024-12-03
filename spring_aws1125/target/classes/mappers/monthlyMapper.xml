@@ -66,5 +66,12 @@ update monthly_bakery set delyn='Y', modifyday=now() where mbidx = #{mbidx}
 </update>
 
 
+<!-- 게시물 수정 쿼리 --> 
+<update id="monthlyUpdate" parameterType="monv">
+update monthly_bakery set msubject =#{msubject}, mcontents =#{mcontents}, modifyday= now(),filename=#{uploadedFilename}, introduction=#{introduction}
+where mbidx=#{mbidx}
+</update>
+
+
 
 </mapper>

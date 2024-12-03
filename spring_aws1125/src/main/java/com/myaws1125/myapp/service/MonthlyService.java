@@ -13,5 +13,6 @@ public interface MonthlyService {
 	public MonthlyVo monthlySelectOne(int mbidx); // 상세내용 보여주기
 	public int monthlyViewCntUpdate(int mbidx); // 조회수 올리기
 	public int monthlyDelete(int mbidx); // 삭제하기 기능
+	public int monthlyUpdate(MonthlyVo monv); // 수정하기
 
 }

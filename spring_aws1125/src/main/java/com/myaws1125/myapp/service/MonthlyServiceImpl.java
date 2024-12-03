@@ -87,6 +87,14 @@ public class MonthlyServiceImpl implements MonthlyService{
 		return value;
 	}
 	
+	// 수정하기 
+	@Override
+	public int monthlyUpdate(MonthlyVo monv) {
+		
+		int value = monm.monthlyUpdate(monv); // monv값 넘겨주기 
+		return value;
+	}
+	
 
 	
 	
