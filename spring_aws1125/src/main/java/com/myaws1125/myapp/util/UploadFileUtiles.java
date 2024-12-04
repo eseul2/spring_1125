@@ -3,7 +3,9 @@ package com.myaws1125.myapp.util;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class UploadFileUtiles {
@@ -18,6 +21,24 @@ public class UploadFileUtiles {
 	  // 로그 출력 객체 생성
 	private static final Logger logger = 
 			LoggerFactory.getLogger(UploadFileUtiles.class);
+	
+	
+	
+    // 다중 파일 업로드 메서드
+    public static List<String> uploadFiles(String uploadPath, List<MultipartFile> files) throws Exception {
+        List<String> uploadedFileNames = new ArrayList<>();
+        
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) { // 파일이 비어있지 않은 경우만 처리
+                String originalName = file.getOriginalFilename();
+                byte[] fileData = file.getBytes();
+                String uploadedFileName = uploadFile(uploadPath, originalName, fileData);
+                uploadedFileNames.add(uploadedFileName); // 업로드된 파일 이름 추가
+            }
+        }
+        
+        return uploadedFileNames; // 업로드된 파일 경로 리스트 반환
+    }
 
 	 // 파일 업로드 메서드
 	public static String uploadFile(String uploadPath,

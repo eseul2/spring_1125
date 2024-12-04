@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import = "java.util.*" %>
+<%@ page import="com.myaws1125.myapp.domain.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+ <%
+ ArrayList<ReviewVo> rlist = (ArrayList<ReviewVo>)request.getAttribute("rlist");
+ PageMaker pm = (PageMaker)request.getAttribute("pm"); 
+ 
+ // 게시물 목록 순서 나타내기 
+ int totalCount = pm.getTotalCount();  //전체갯수를 뽑아왔어 
+ 
+ String keyword = pm.getScri().getKeyword();
+ 
+ String param = "keyword="+keyword; 
+ %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +23,11 @@
 <title>빵집 찾기</title>
 <link href= "<%=request.getContextPath()%>/resources/css/reviewListStyle.css" type-"text/css" rel="stylesheet" >
 </head>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVPsD3FK0Uki9fB5bQv3c_nA_A_0Al2Uw&callback=myMap"></script>
 <script>
+
+
+
 //모달 요소 및 닫기 버튼 가져오기
 const modal = document.getElementById('modal-popup'); // 모달 창 요소
 const closeBtn = document.querySelector('.close-btn'); // 모달 닫기 버튼 요소 
@@ -56,11 +74,6 @@ slides.forEach((slide, index) => {
 <body>
 
 
-
-
-
-
-
 <header class="header">
 	<div class="logo">
 		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
@@ -95,12 +108,15 @@ slides.forEach((slide, index) => {
 <main>
   <div class="search-section">
     <h1>어떤 빵집을 찾으시나요?</h1>
+<form name="frm" action="<%=request.getContextPath()%>/review/reviewList.aws" method="get"> 
     <div class="search-container">
-      <input type="text" class="search-input" placeholder="검색어를 입력하세요">
-      <button class="search-button">&#128269;</button>
+      <input type="text" class="search-input" placeholder="검색어를 입력하세요" name="keyword">
+      <button type="submit" class="search-button">&#128269;</button>
     </div>
+</form>      
   </div>
 </main>
+
 
 
 <!-- 부드럽고 얇은 선 추가 -->
@@ -128,137 +144,83 @@ slides.forEach((slide, index) => {
 
 
 
-
 <!-- 빵집 추천 미리보기 게시물 띄우기 -->
 <section class="recommend-section">
     <div class="card-container">
-        <div class="card" onclick="openModal('bakery1')">
-            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 1">
+        <% 
+        int num = totalCount - (pm.getScri().getPage() - 1) * pm.getScri().getPerPageNum(); // 현재 페이지의 첫 번째 게시글 번호 계산
+        for (ReviewVo rv : rlist) { // 게시물 리스트 순회 
+            // 여러 개의 이미지 파일 이름을 쉼표로 구분하여 배열로 나누기
+            String[] filenames = rv.getFilename().split(",");
+            // 첫 번째 이미지 파일만 가져오기
+            String firstImage = filenames.length > 0 ? filenames[0] : ""; // 첫 번째 이미지만 가져옴
+        %>
+        <div class="card" onclick="openModal('bakery')">
+            <!-- 첫 번째 이미지만 표시 -->
+            <img src="<%= request.getContextPath() %>/review/displayFile.aws?fileName=<%= firstImage %>" alt="추천 빵집">
             <div class="card-content">
-            <div class="title-container">
-                <h3><strong>빵집 이름 1</strong></h3>
-				<!-- 북마크 버튼 -->
-  				<button class="bookmark-btn" data-review-id="1">
-    			<span class="bookmark-icon">&#9825;</span> <!-- 빈 하트 -->
-  				</button>
-  			</div>
-  			
-                <!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <p>서울 강남구의 베이커리로, 바게트가 유명합니다!</p>
-            </div>
-        </div>
-        <div class="card" onclick="openModal('bakery2')">
-            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 2">
-            <div class="card-content">
-            <div class="title-container">
-                <h3><strong>빵집 이름 2</strong></h3>
-                <!-- 북마크 버튼 -->
-  				<button class="bookmark-btn" data-review-id="1">
-    			<span class="bookmark-icon">&#9825;</span> <!-- 빈 하트 -->
-  				</button>
-  			</div>
+                <div class="title-container">
+                    <h3><strong><%=rv.getBakery_name()%></strong></h3>
+                    <!-- 북마크 버튼 -->
+                    <button class="bookmark-btn" data-review-id="1">
+                        <span class="bookmark-icon">&#9825;</span> <!-- 빈 하트 -->
+                    </button>
+                </div>
                 
-				<!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <div class="contact-info">
-					<p><span class="label">주소:</span> 
-					<span class="value">갈마동 333-343번지 101호
-					갈마동 333-343번지 101호</span></p>
-				</div>
-           		 <hr class="freview1"> <!-- 미리보기 구분선 -->           
-                <p>부산 해운대에 위치한 달콤한 케이크로 유명한 곳!
-                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
-                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
-                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
-                부산 해운대에 위치한 달콤한 케이크로 유명한 곳
-                </p>
-            </div>
-        </div>
-        <div class="card" onclick="openModal('bakery3')">
-            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 3">
-            <div class="card-content">
-                <h3><strong>빵집 이름 3</strong></h3>
                 <!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
+                <hr class="freview"> <!-- 미리보기 구분선 -->
+                <div class="contact-info">
+                    <p><span class="label">주소:</span> 
+                    <span class="value"><%=rv.getAddress()%></span></p>
+                </div>
+                <hr class="freview1"> <!-- 미리보기 구분선 -->           
+                <p><%=rv.getReview_contents()%></p>
             </div>
         </div>
-        <div class="card" onclick="openModal('bakery4')">
-            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 4">
-            <div class="card-content">
-                <h3><strong>빵집 이름 4</strong></h3>
-				<!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
-            </div>
-        </div>
-    </div>
-    
-        <div class="card-container">
-        <div class="card" onclick="openModal('bakery1')">
-            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 1">
-            <div class="card-content">
-                <h3><strong>빵집 이름 1</strong></h3>
-				<!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <p>서울 강남구의 베이커리로, 바게트가 유명합니다!</p>
-            </div>
-        </div>
-        <div class="card" onclick="openModal('bakery2')">
-            <img src="<%= request.getContextPath() %>/resources/images/test.png" alt="추천 빵집 2">
-            <div class="card-content">
-                <h3><strong>빵집 이름 2</strong></h3>
-				<!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <p>부산 해운대에 위치한 달콤한 케이크로 유명한 곳!</p>
-            </div>
-        </div>
-        <div class="card" onclick="openModal('bakery3')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery3.jpg" alt="추천 빵집 3">
-            <div class="card-content">
-                <h3><strong>빵집 이름 3</strong></h3>
-				<!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-                <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
-            </div>
-        </div>
-        <div class="card" onclick="openModal('bakery4')">
-            <img src="<%= request.getContextPath() %>/resources/images/bakery3.jpg" alt="추천 빵집 4">
-            <div class="card-content">
-                <h3><strong>빵집 이름 4</strong></h3>
-				<!-- 가로 구분선 -->
-				<hr class="freview"> <!-- 미리보기 구분선 -->
-				<div class="contact-info">
-                <p>전화: 042-111-111</p>
-                <p>주소: 서울 강남구 테헤란로 123</p>
-           		 </div>
-           		 <hr class="freview1"> <!-- 미리보기 구분선 -->
-                <p>대전에서 맛볼 수 있는 촉촉한 크로와상이 일품!</p>
-            </div>
-        </div>
+        <%
+        num = num-1;
+        }
+        %>    
     </div>
 
     
+        
 	<!-- 페이지네이션 (페이지 이동) -->
 	<div class="pagination">
-		<a href="#" class="prev">◀</a>
-		<a href="#">1</a>
-		<a href="#">2</a>
-		<a href="#">3</a>
-		<a href="#">4</a>
-		<a href="#">5</a>
-		<a href="#" class="next">▶</a>
+		<% 
+	// 이전 페이지가 있는 경우, "◀" 버튼을 활성화하여 이전 페이지로 이동할 수 있게 함
+		if (pm.isPrev()) { %>
+			<a href="<%=request.getContextPath()%>/review/reviewList.aws?page=<%=pm.getStartPage()-1%>&<%=param%>" class="prev">◀</a>
+		<% } else { %>
+			<!-- 이전 페이지가 없는 경우, "◀" 버튼을 비활성화 -->
+			<span class="prev disabled">◀</span>
+		<% } %>
+	
+		<% 
+		// 시작 페이지부터 끝 페이지까지 반복하여 각 페이지 번호를 생성
+		for (int i = pm.getStartPage(); i <= pm.getEndPage(); i++) { %>
+			<a href="<%=request.getContextPath()%>/review/reviewList.aws?page=<%=i%>&<%=param%>" 
+			class="<%= (i == pm.getScri().getPage()) ? "active" : "" %>"><%=i%></a>
+		<% } %>
+		
+		<% 
+		// 다음 페이지가 있는 경우, "▶" 버튼을 활성화하여 다음 페이지로 이동할 수 있게 함
+		if (pm.isNext()) { %>
+			<a href="<%=request.getContextPath()%>/review/reviewList.aws?page=<%=pm.getEndPage()+1%>&<%=param%>" class="next">▶</a>
+		<% } else { %>
+			<!-- 다음 페이지가 없는 경우, "▶" 버튼을 비활성화 -->
+			<span class="next disabled">▶</span>
+		<% } %>
 	</div>
 </section>
 
 
 <!-- 글쓰기 버튼 (관리자만 보이게) -->
-<%-- <% if (grade.equals("admin")) { %> --%>
-  <div class="write-button-container">
-    <a href="<%= request.getContextPath() %>/review/reviewWrite.aws" class="write-button">글쓰기</a>
-  </div>
-<%-- <% } %> --%>
+<c:if test="${sessionScope.grade == 'admin'}">
+    <div class="write-button-container">
+        <a href="${pageContext.request.contextPath}/review/reviewWrite.aws" class="write-button">글쓰기</a>
+    </div>
+</c:if>
 <!-- 메인 콘텐츠 끝 -->
 
 
@@ -290,30 +252,29 @@ slides.forEach((slide, index) => {
     </div>
 
     <!-- 가게 이름 -->
-    <h2 id="modalTitle" class="store-name"></h2>
+    <h2 id="bakery_name" class="store-name"></h2>
 
     <!-- 가로 구분선 -->
 <hr class="modal-divider">
 
-    <!-- 관리자 리뷰 -->
-    <p id="modalReview" class="store-review"></p>
+    <!-- 리뷰 -->
+    <p id="review_contents" class="store-review"></p>
 
     <!-- 메뉴 정보 -->
     <div class="menu-info">
       <h3>메뉴 정보</h3>
-      <p id="modalLunch"></p>
-      <p id="modalDinner"></p>
+      <p id="menu_info"></p>
     </div>
 
     <!-- 가게 세부 정보 -->
     <div class="store-details">
-      <p id="modalAddress"><strong>주소:</strong></p>
-      <p id="modalPhone"><strong>전화번호:</strong></p>
-      <p id="modalParking"><strong>주차:</strong></p>
+      <p id="address"><strong>주소:</strong></p>
+      <p id="bakery_phone"><strong>전화번호:</strong></p>
+      <p id="parking_info"><strong>주차:</strong></p>
     </div>
 
     <!-- 지도 -->
-    <div id="store-map" class="map">
+    <div id="map" class="map">
       <iframe
         id="modalMap"
         src=""
@@ -331,37 +292,21 @@ slides.forEach((slide, index) => {
 
 <!-- 자바스크립트 코드 -->
 <script>
-//빵집 데이터를 저장한 객체 배열 (예시로 사용)
+//빵집 데이터를 저장한 객체 배열 
 const bakeryData = {
-  bakery1: {
-    title: "가게 이름 1",
-    review: "깔끔한 분위기와 친절한 서비스가 인상적인 곳입니다.",
+  bakery: {
+    title: "${rv.bakery_name}",
+    review: "${rv.review_contents}",
     images: [
-      "<%= request.getContextPath() %>/resources/images/bakery1-1.jpg",
+      "<%= request.getContextPath() %>/resources/images/bakery1-2.jpg",
       "<%= request.getContextPath() %>/resources/images/bakery1-2.jpg",
       "<%= request.getContextPath() %>/resources/images/bakery1-3.jpg"
-    ],
-    lunch: "런치 코스: 75,000원",
-    dinner: "디너 코스: 120,000원",
-    address: "서울특별시 강남구 삼성동 123-45",
-    phone: "02-1234-5678",
-    parking: "가능 (발렛파킹)",
+      ],
+    menu: "${rv.menu_info}",
+    address: "${rv.address}",
+    phone: "${rv.bakery_phone}",
+    parking: "${rv.bakery_phone}",
     mapSrc: "https://maps.google.com/maps?q=37.5172,127.0473&z=15&output=embed"
-  },
-  bakery2: {
-    title: "가게 이름 2",
-    review: "해운대의 바다를 보며 즐길 수 있는 맛있는 디저트 카페!",
-    images: [
-      "<%= request.getContextPath() %>/resources/images/bakery2-1.jpg",
-      "<%= request.getContextPath() %>/resources/images/bakery2-2.jpg",
-      "<%= request.getContextPath() %>/resources/images/bakery2-3.jpg"
-    ],
-    lunch: "런치 코스: 55,000원",
-    dinner: "디너 코스: 95,000원",
-    address: "부산 해운대구 우동 678-90",
-    phone: "051-2345-6789",
-    parking: "불가",
-    mapSrc: "https://maps.google.com/maps?q=35.1587,129.1604&z=15&output=embed"
   }
 };
 
@@ -375,13 +320,12 @@ function openModal(bakeryId) {
 
   if (bakeryInfo) {
     // 기본 정보 설정 모달 내부 텍스트 업데이트
-    document.getElementById("modalTitle").innerText = bakeryInfo.title;
-    document.getElementById("modalReview").innerText = `관리자 리뷰: ${bakeryInfo.review}`;
-    document.getElementById("modalLunch").innerText = bakeryInfo.lunch;
-    document.getElementById("modalDinner").innerText = bakeryInfo.dinner;
-    document.getElementById("modalAddress").innerText = `주소: ${bakeryInfo.address}`;
-    document.getElementById("modalPhone").innerText = `전화번호: ${bakeryInfo.phone}`;
-    document.getElementById("modalParking").innerText = `주차: ${bakeryInfo.parking}`;
+    document.getElementById("bakery_name").innerText = bakeryInfo.title;
+    document.getElementById("review_contents").innerText = `관리자 리뷰: ${bakeryInfo.review}`;
+    document.getElementById("menu_info").innerText = bakeryInfo.menu;
+    document.getElementById("address").innerText = `주소: ${bakeryInfo.address}`;
+    document.getElementById("bakery_phone").innerText = `전화번호: ${bakeryInfo.phone}`;
+    document.getElementById("parking_info").innerText = `주차: ${bakeryInfo.parking}`;
     document.getElementById("modalMap").src = bakeryInfo.mapSrc;
 
     // 이미지 슬라이드 설정

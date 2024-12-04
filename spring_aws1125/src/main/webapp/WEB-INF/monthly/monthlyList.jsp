@@ -11,9 +11,8 @@
  int totalCount = pm.getTotalCount();  //전체갯수를 뽑아왔어 
  
  String keyword = pm.getScri().getKeyword();
- String searchType = pm.getScri().getSearchType();
  
- String param = "keyword="+keyword+"&searchType="+searchType+""; 
+ String param = "keyword="+keyword; 
  %> 
 <!DOCTYPE html>
 <html>
@@ -60,10 +59,6 @@
     <p class="monthly-description">한 달에 한 번, 특별한 빵집을 소개합니다!</p>
     <form name="frm" action="<%=request.getContextPath()%>/monthly/monthlyList.aws" method="get">
     <div class="search-container">
-		<select name = "searchType" class="custom-select"> 
-        	<option value="subject">제목</option>
-        	<option value="contents">내용</option>
-        </select>
       <input type="text" class="search-input" placeholder="이달의 매거진을 검색할 수 있습니다" name="keyword">
       <button type="submit" class="search-button">&#128269;</button>
     </div>

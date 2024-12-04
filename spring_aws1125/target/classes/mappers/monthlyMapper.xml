@@ -9,24 +9,18 @@
 <sql id ="search">
 
  <!-- 검색 조건이 'subject'일 경우 -->
-<if test="searchType != null and searchType.equals('msubject')"> <!-- 제목 검색어 포함 -->
+<if test="keyword != null"> <!-- 제목 검색어 포함 -->
 	and msubject like concat('%',#{keyword},'%')
 </if>
 
- <!-- 검색 조건이 'contents'일 경우 -->
-<if test="searchType != null and searchType.equals('mcontents')"> <!-- 내용 검색어 포함 -->
-	and mcontents like concat('%',#{keyword},'%')
-</if>
 </sql>
-
 
 
   <!-- 게시글 목록 조회 쿼리 -->
 <select id="monthlySelectAll" parameterType="HashMap" resultType="monv">
 	select * from monthly_bakery where delyn='N' <!-- 삭제되지 않은 게시글만 조회 -->
 	<include refid="search"/> <!-- 검색 필터링 조건 포함 -->
-	order by mbidx desc <!-- mbidx를 기준으로 내림차순 정렬 -->
-	limit #{startPageNum}, #{perPageNum} <!-- 페이징 처리 -->
+	order by mbidx desc limit #{startPageNum}, #{perPageNum} <!-- 페이징 처리 -->
 </select>
 
 
