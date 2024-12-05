@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>글쓰기</title>
-<link href= "<%=request.getContextPath()%>/resources/css/boardContentsStyle.css" type-"text/css" rel="stylesheet" >
+<link href= "<%=request.getContextPath()%>/resources/css/boardContentsStyle.css" type="text/css" rel="stylesheet" >
 </head>
 <!-- 제이쿼리 cdn 주소 -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> 

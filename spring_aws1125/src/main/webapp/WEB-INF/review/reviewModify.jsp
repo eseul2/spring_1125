@@ -1,29 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!-- 게시물 입력 작성 실패시 띄우는 메세지-->
-<%
-String msg = "";
-if(request.getAttribute("msg") != null) {
-msg = (String)request.getAttribute("msg");
-}
-
-if(msg != "") {  
-out.println("<script>alert('"+msg+"');</script>");
-}
-
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>빵집찾기 관리자 글쓰기</title>
+<title>빵집찾기 수정</title>
 <link href= "<%=request.getContextPath()%>/resources/css/reviewWriteStyle.css" type="text/css" rel="stylesheet" >
+</head>
 
-<script>
+<script>z
 
-function reviewCheck() {
+function modifyCheck() {
 
 	var fm = document.frm;
 	
@@ -31,7 +17,7 @@ function reviewCheck() {
 	var ans = confirm("저장하시겠습니까?");
 	
 	if(ans == true) {	
-		fm.action="<%=request.getContextPath()%>/review/reviewWriteAction.aws"; 
+		fm.action="<%=request.getContextPath()%>/review/reviewModifyAction.aws"; 
 		fm.method="post"; 
 		fm.enctype="multipart/form-data";   //파일을 올리기 위해서 지정해야한다. 
 		fm.submit();	//파일 업로드를 포함한 폼 데이터를 전송할 때 필요한 인코딩 방식을 지정
@@ -40,11 +26,7 @@ function reviewCheck() {
 }
 
 </script>
-
-
-</head>
 <body>
-
 
 <header class="header">
 	<div class="logo">
@@ -85,14 +67,15 @@ function reviewCheck() {
     
     <!-- 폼 시작, 서버에 데이터를 전송하기 위한 POST 방식 -->
     <form name="frm">
+    <input type="hidden" name="review_id" value="${rv.review_id}">  <!-- review_id값이 수정할때 필요해서 hidden으로 안보이게 한 input에 넣어서 controller로 보낸다. -->
         
         <!-- 빵집 이름 입력 필드 -->
         <label for="bakery_name">빵집 이름</label>
-        <input type="text" id="bakery_name" name="bakery_name">
+        <input type="text" id="bakery_name" name="bakery_name" value="${rv.bakery_name}">
 
         <!-- 리뷰 내용 입력 필드 -->
         <label for="review_contents">리뷰 내용</label>
-        <textarea id="review_contents" name="review_contents" rows="5"></textarea>
+        <textarea id="review_contents" name="review_contents" rows="5" >${rv.review_contents}</textarea>
 
         <!-- 이미지 업로드 입력 필드, 여러 개의 이미지 선택 가능 -->
         <label for="file">이미지</label>
@@ -100,41 +83,37 @@ function reviewCheck() {
 
         <!-- 주소 입력 필드 -->
         <label for="address">주소</label>
-        <input type="text" id="address" name="address" >
+        <input type="text" id="address" name="address" value="${rv.address}" >
 
         <!-- 전화번호 입력 필드 -->
         <label for="bakery_phone">전화번호</label>
-        <input type="text" id="bakery_phone" name="bakery_phone">
+        <input type="text" id="bakery_phone" name="bakery_phone" value="${rv.bakery_phone}">
 
         <!-- 운영시간 입력 필드 -->
         <label for="operating_hours">운영시간</label>
-        <input type="text" id="operating_hours" name="operating_hours">
+        <input type="text" id="operating_hours" name="operating_hours" value="${rv.operating_hours}">
 
         <!-- 주차 정보 입력 필드 -->
         <label for="parking_info">주차 정보</label>
-        <input type="text" id="parking_info" name="parking_info">
+        <input type="text" id="parking_info" name="parking_info" value="${rv.parking_info}">
 
         <!-- 메뉴 정보 입력 필드 -->
         <label for="menu-info">메뉴 정보</label>
-        <textarea id="menu-info" name="menu_info" rows="4"></textarea>
+        <textarea id="menu-info" name="menu_info" rows="4">${rv.menu_info}</textarea>
 
         <!-- 지도 (위도, 경도) 입력 필드 -->
         <label for="location">지도 (위도, 경도)</label>
-        <input type="text" id="latitude" name="latitude" placeholder="위도">
-        <input type="text" id="longitude" name="longitude" placeholder="경도">
+        <input type="text" id="latitude" name="latitude" placeholder="위도" value="${rv.latitude}">
+        <input type="text" id="longitude" name="longitude" placeholder="경도" value="${rv.longitude}">
 
         <!-- 지역 입력 필드 (카테고리 없이 지역만) -->
         <label for="area">지역</label>
-        <input type="text" id="area" name="area">
+        <input type="text" id="area" name="area" value="${rv.area}">
 
         <!-- 게시물 등록 버튼 -->
-        <button type="button" onclick="reviewCheck();">게시물 등록</button>
+        <button type="button" onclick="modifyCheck();">수정</button>
     </form>
 </div>
-
-
-
-
 
     <!-- 푸터 영역 (페이지 끝부분에 추가) -->
 <footer class="custom-footer">
@@ -142,5 +121,6 @@ function reviewCheck() {
 		<p>&copy; 2024 빵지순례 웹사이트. 모든 권리 보유.</p>
 	</div>
 </footer>
+
 </body>
 </html>

@@ -33,15 +33,6 @@ public class MemberController {
 	
 	
 	
-	// 메인페이지
-	@RequestMapping(value= "main.aws", method=RequestMethod.GET)
-	public String main() {
-		
-		String path = "WEB-INF/member/main";
-		return path;
-	}
-	
-	
 	// 로그인 페이지 
 	@RequestMapping(value= "memberLogin.aws", method=RequestMethod.GET)
 	public String memberLogin() {

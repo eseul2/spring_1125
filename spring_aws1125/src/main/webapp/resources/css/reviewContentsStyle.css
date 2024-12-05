@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+
+/* 자유게시판 목록 */
+/* 헤더 부분 스타일 */
+.header {
+    background-color: #333; /* 배경색을 검은색으로 설정 */
+    color: white; /* 텍스트 색상을 흰색으로 설정 */
+    padding: 20px 0; /* 상하 여백 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    padding-left: 360px; /* 왼쪽 여백을 30px로 설정 로고 움직이는거 */
+    margin-bottom: 40px; /* 간격을 30px로 설정 */
+    display: flex; /* 플렉스박스를 사용하여 레이아웃 구성 */
+    justify-content: space-between; /* 양쪽 끝에 배치 */
+    align-items: center; /* 세로 가운데 정렬 */
+}
+
+.header .logo {
+    font-size: 24px; /* 로고 텍스트 크기 */
+    font-weight: bold; /* 로고 텍스트 두껍게 */
+}
+
+.header .separator {
+    margin-top: 10px;
+}
+
+
+/* 상단 네비게이션 스타일 */
+.navbar {
+    display: flex; /* 네비게이션 항목들을 가로로 배치 */
+    margin-left: auto; /* 네비게이션을 오른쪽 끝으로 밀어냄 */
+    margin-right: 10px; /* 살짝 왼쪽으로 이동 (여기서 10px를 조정) */
+  
+}
+
+.navbar ul {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+    margin: 0;
+    display: flex; /* 리스트 항목을 가로로 배치 */
+}
+
+.navbar ul li {
+    margin-left: 20px; /* 항목 간 간격 */
+}
+
+.navbar a {
+    color: white; /* 링크 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    font-size: 16px; /* 글자 크기 */
+    padding: 5px 10px; /* 패딩 추가 */
+    transition: background-color 0.3s ease; /* 호버 시 배경색 변화 */
+}
+
+.navbar a:hover {
+    background-color: #444; /* 호버 시 배경색 변화 */
+    border-radius: 5px; /* 둥근 테두리 */
+}
+
+
+/* 배너 로고 흰색으로 고정시키기 */
+.logo a {
+    color: white; /* 링크 글자 색상을 흰색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.logo a:visited {
+    color: white; /* 방문한 링크 색상을 흰색으로 설정 */
+}
+
+.logo a:hover {
+    color: white; /* 마우스를 올렸을 때 링크 색상을 흰색으로 설정 */
+}
+
+.logo a:active {
+    color: white; /* 클릭한 상태의 링크 색상을 흰색으로 설정 */
+}
+
+
+
+
+
+
+/* 빵집 게시판 큰 박스 스타일 */
+.bakery-container {
+	margin-top: 60px; /* 위 여백 */
+    width: 90%; /* 박스 너비를 화면의 90%로 설정 */
+    max-width: 1000px; /* 최대 너비는 1200px로 설정 (너무 커지지 않도록 제한) */
+    margin: 0 auto; /* 가로 중앙 정렬 */
+    background-color: white; /* 배경색 흰색으로 설정 */
+    padding: 20px; /* 내부 여백 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+    margin-bottom: 50px; /* 아래 여백 */
+}
+
+
+
+
+/* 이미지 슬라이더 스타일 */
+.image-slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* 최대 너비 */
+    margin: 0 auto;
+    overflow: hidden; /* 이미지를 넘지 않도록 숨김 */
+}
+
+.image-slider img {
+    width: 100%;
+    height: 600px; /* 원하는 고정 높이 */
+    display: none; /* 처음에 이미지를 숨김 */
+}
+
+/* active 클래스를 적용한 이미지만 표시 */
+.image-slider .active {
+    display: block; /* 활성화된 이미지만 표시 */
+}
+
+/* 슬라이더 내비게이션 스타일 */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1; /* 버튼을 이미지 위로 올림 */
+}
+
+.prev {
+    left: 10px; /* 왼쪽 버튼 위치 */
+}
+
+.next {
+    right: 10px; /* 오른쪽 버튼 위치 */
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+/* 빵집 이름 부분 스타일 */
+.bakery-info h1 {
+    text-align: center; /* 텍스트 중앙 정렬 */
+    font-size: 24px; /* 큰 글씨로 설정 */
+    margin-bottom: 10px; /* 아래 여백 */
+}
+
+.bakery-info hr {
+    border: 1px solid #ddd; /* 구분선 */
+    margin: 20px 0; /* 위 아래 여백 */
+}
+
+
+/* 리뷰 내용 박스 스타일 */
+.review-box {
+    background-color: white; /* 연한 배경색 */
+    border: 1px solid #ddd; /* 테두리 색상 */
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555; /* 텍스트 색상 */
+    min-height: 100px; /* 원하는 최소 높이로 설정 */
+}
+
+
+
+
+.menu-box h3 {
+    font-size: 18px; /* 메뉴 제목 크기 */
+    font-weight: bold; /* 제목 두껍게 */
+    color: #333; /* 제목 색상 */
+    margin-bottom: 10px; /* 아래 여백 */
+    white-space: pre-wrap; /* 줄바꿈 */
+}
+
+
+.details-container {
+    display: flex;
+    justify-content: space-between; /* 공간을 균등하게 분배 */
+    gap: 20px; /* 박스 사이의 간격 */
+}
+
+.menu-box, .details-box {
+    flex: 1; /* 두 박스가 동일한 너비를 가지도록 설정 */
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+
+
+
+/* 지도 박스 스타일 */
+.map-box {
+    background-color: white; /* 배경색 */
+    border: 1px solid #ddd; /* 테두리 색상 */
+    padding: 20px; /* 내부 여백 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin-top: 20px; /* 위 여백 */
+}
+
+.map-box iframe {
+    width: 100%; /* 가로 100% */
+    height: 400px; /* 고정 높이 */
+    border: 0; /* 테두리 제거 */
+}
+
+
+
+
+
+html, body {
+    height: 100%; /* 페이지가 전체 높이를 차지하도록 설정 */
+    margin: 0; /* 기본 마진 제거 */
+    display: flex;
+    flex-direction: column; /* 수직 방향으로 레이아웃 정렬 */
+}
+
+body {
+    flex: 1; /* 본문 내용이 많아도 푸터가 하단에 위치하도록 설정 */
+}
+
+.custom-footer {
+    background-color: #333; /* 검은색 배경 */
+    color: white; /* 흰색 텍스트 */
+    padding: 20px 0; /* 상하 여백 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    font-size: 14px; /* 글자 크기 */
+    width: 100%; /* 전체 너비 */
+}

@@ -158,7 +158,7 @@ public class MonthlyController {
 	
 	// 삭제하기 기능
 	@RequestMapping(value = "monthlyDelete.aws", method = RequestMethod.GET)
-	public String deleteMonthly(
+	public String monthlyDelete(
 			@RequestParam("mbidx") int mbidx){
 		
 	    // 게시글 삭제 서비스 호출

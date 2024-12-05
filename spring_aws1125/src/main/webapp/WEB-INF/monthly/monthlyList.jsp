@@ -38,12 +38,14 @@
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
-			<li><a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a></li>
 			<!-- 회원번호가 있으면 담아놓은 회원이름을 출력하고 로그아웃 버튼을 만들어놓는다. -->
 			<li><!-- 값이 비어있지 않으면 -->
 				<c:if test="${!empty midx}">
-					${memberName}&nbsp;
-				<a href='${pageContext.request.contextPath}/member/memberLogout.aws'>님,로그아웃</a> 
+					${memberName}님,
+				<a href='${pageContext.request.contextPath}/member/memberLogout.aws'>로그아웃</a> 
+				</c:if>
+				<c:if test="${empty midx}">
+				<a href="<%=request.getContextPath()%>/member/memberLogin.aws">로그인</a>
 				</c:if>
 			</li>
 			<li><a href ="<%=request.getContextPath()%>/bookmark/bookmarkList.aws">🤍</a></li>

@@ -16,7 +16,7 @@ ${memberName}&nbsp;
 <br> --%>
 
 
-<a href ="<%=request.getContextPath()%>/member/main.aws">메인 페이지</a>
+<a href ="<%=request.getContextPath()%>/review/main.aws">메인 페이지</a>
 
 
 </body>

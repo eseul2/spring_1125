@@ -155,7 +155,10 @@
 
 
 
-
+.link {
+	text-decoration: none;
+	color: black;
+}
 
 
 /* 배너 아래 빵집추천 게시물 스타일 */
@@ -395,57 +398,6 @@
   transform: scale(1.1); /* 살짝 커지도록 효과 추가 */
 }
 
-
-/* 이미지 슬라이더 스타일 */
-.image-slider {
-  position: relative;
-  overflow: hidden;
-}
-
-.slides img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-.prev-btn,
-.next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 2rem;
-  padding: 10px;
-}
-
-.prev-btn {
-  left: 10px;
-}
-
-.next-btn {
-  right: 10px;
-}
-
-/* 텍스트 및 지도 스타일 */
-.store-name {
-  font-size: 1.8rem;
-  margin-top: 20px;
-}
-
-.store-review,
-.menu-info,
-.store-details {
-  margin: 15px 0;
-}
-
-.map {
-  margin-top: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-}
 
 
 /* 모달 내 가로 구분선 스타일 */

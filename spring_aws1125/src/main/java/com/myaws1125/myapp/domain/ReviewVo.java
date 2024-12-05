@@ -1,5 +1,6 @@
 package com.myaws1125.myapp.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ReviewVo {
@@ -21,7 +22,22 @@ public class ReviewVo {
 	private String filename;
 	private List<String> uploadedFilenames; // 다중 파일 이름 저장
 	private String address;
+	private String modifyday;
 	
+	
+
+	// ReviewVo에서 파일 이름을 분리해서 리스트로 반환하는 메서드를 추가
+	public List<String> getFileNames() {
+	    return Arrays.asList(this.filename.split(","));
+	}
+	
+	public String getModifyday() {
+		return modifyday;
+	}
+
+	public void setModifyday(String modifyday) {
+		this.modifyday = modifyday;
+	}
 	
 	public String getAddress() {
 		return address;

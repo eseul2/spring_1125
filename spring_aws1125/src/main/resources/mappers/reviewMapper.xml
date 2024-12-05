@@ -44,5 +44,30 @@ values(#{bakery_name}, #{review_contents}, #{midx}, #{filename}, #{address}, #{b
 
 
 
+<!-- 내용 보여주는 쿼리 -->
+<select id="reviewSelectOne" parameterType="int" resultType="rv">
+select * from bakery_review where delyn='N' and review_id= #{review_id}
+</select>
+
+<!-- 게시물 삭제하는 쿼리 구문 -->
+<update id="reviewDelete" parameterType="int">
+update bakery_review set delyn='Y', modifyday=now() where review_id = #{review_id} 
+</update>
+
+<!-- 게시물 수정 쿼리 --> 
+<update id="reviewUpdate" parameterType="rv">
+update bakery_review set bakery_name =#{bakery_name}, review_contents =#{review_contents}, modifyday= now(),filename=#{filename}, address=#{address}, bakery_phone=#{bakery_phone}, operating_hours=#{operating_hours}, menu_info=#{menu_info}, parking_info=#{parking_info}, latitude=#{latitude}, longitude=#{longitude}, area=#{area}
+where review_id=#{review_id}
+</update>
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

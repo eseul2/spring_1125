@@ -5,12 +5,19 @@ public class SearchCriteria extends Criteria  {
 	
 	private String searchType; 	
 	private String keyword;		
+	private String area;     // 추가된 필드: 지역
 	
 	
 	
 	
 	
 	
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
 	public String getSearchType() {
 		return searchType;
 	}
