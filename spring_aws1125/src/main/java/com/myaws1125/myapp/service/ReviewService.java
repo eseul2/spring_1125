@@ -12,6 +12,7 @@ public interface ReviewService {
 	public ReviewVo reviewSelectOne(int review_id); // 내용 나타내기
 	public int reviewDelete(int review_id); // 삭제하기 기능
 	public int reviewUpdate(ReviewVo rv); // 수정하기
-	
+	public boolean updateBookmark(int memberId, int reviewId, String bookmark); // 북마크 업데이트
+	public ArrayList<ReviewVo> bookmarkReviews(SearchCriteria scri); // 북마크된 게시물만 가져오기
 
 }

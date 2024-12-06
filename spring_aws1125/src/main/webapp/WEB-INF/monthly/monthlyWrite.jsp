@@ -19,7 +19,7 @@ out.println("<script>alert('"+msg+"');</script>");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>글쓰기</title>
-<link href= "<%=request.getContextPath()%>/resources/css/monthlyWriteStyle.css" type-"text/css" rel="stylesheet" >
+<link href= "<%=request.getContextPath()%>/resources/css/monthlyWriteStyle.css" type="text/css" rel="stylesheet" >
 
 <!-- TinyMCE 스크립트 추가 -->
 <script src="https://cdn.tiny.cloud/1/kim30qal93k1j6w6rqi9isinuueeqjn0bb3z9m4y040lj1lg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

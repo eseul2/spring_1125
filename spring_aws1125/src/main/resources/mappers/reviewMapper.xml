@@ -15,6 +15,11 @@
 	and bakery_name like concat('%',#{keyword},'%')
 </if>
 
+<!-- 검색 조건이 'area'일 경우 -->
+<if test="area != null">
+	and area = #{area}
+</if>
+
 </sql>
 
 
@@ -61,10 +66,18 @@ where review_id=#{review_id}
 </update>
 
 
+ <!-- 북마크 업데이트 쿼리 -->
+<update id="updateBookmark" parameterType="map">
+    UPDATE bakery_review
+    SET bookmark = #{bookmark}
+    WHERE review_id = #{reviewId}
+</update>
 
 
-
-
+ <!-- 북마크 활성화된 게시물만 가져오기 -->
+<select id="bookmarkReviews" parameterType="HashMap" resultType="rv">
+select * from bakery_review where bookmark = 'Y' AND delyn = 'N'
+</select>
 
 
 

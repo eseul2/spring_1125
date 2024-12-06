@@ -91,4 +91,38 @@ public class ReviewServiceImpl implements ReviewService {
 		return value;
 	}
 
+
+
+
+	// 북마크 업데이트
+	@Override
+	public boolean updateBookmark(int memberId, int reviewId, String bookmark) {
+        
+		int result = rm.updateBookmark(memberId, reviewId, bookmark);
+        return result > 0; // 업데이트된 행의 수가 1 이상이면 성공
+	}
+	
+	
+	// 북마크된 게시물만 가져오기
+	@Override
+	public ArrayList<ReviewVo> bookmarkReviews(SearchCriteria scri) {
+		
+		// HashMap 객체를 생성하여 페이징, 검색 타입, 키워드 등의 조건을 추가
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		hm.put("startPageNum",(scri.getPage()-1)* scri.getPerPageNum()); // 시작 페이지 번호
+		hm.put("searchType", scri.getSearchType());  // 검색 유형
+		hm.put("keyword", scri.getKeyword()); // 검색 키워드
+		hm.put("perPageNum", scri.getPerPageNum()); // 페이지당 게시글 수
+		hm.put("area", scri.getArea());  // 지역 정보 추가
+		
+		// ReviewMapper를 사용해서 검색 조건에 맞는 게시글 목록 조회
+		ArrayList<ReviewVo> rrlist = rm.bookmarkReviews(hm);
+		return rrlist;
+	}
+
+
+
+
+
+
 }

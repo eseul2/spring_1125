@@ -218,7 +218,7 @@ $("#more").click(function(){
 
 <header class="header">
 	<div class="logo">
-		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
+		<a href ="<%=request.getContextPath()%>/review/main.aws">빵지순례</a>
 	</div>
 <div class="separator"></div>
         
@@ -226,10 +226,10 @@ $("#more").click(function(){
 <!-- 네비게이션 바 -->
 	<nav class="navbar">
 		<ul>
-			<li><a href ="<%=request.getContextPath()%>/member/main.aws">홈</a></li>
+			<li><a href ="<%=request.getContextPath()%>/review/main.aws">홈</a></li>
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
-			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>
+			<li><a href ="<%=request.getContextPath()%>/review/boardList.aws">자유게시판</a></li>
 			<!-- 회원번호가 있으면 담아놓은 회원이름을 출력하고 로그아웃 버튼을 만들어놓는다. -->
 			<li><!-- 값이 비어있지 않으면 -->
 				<c:if test="${!empty midx}">

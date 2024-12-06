@@ -9,6 +9,7 @@
  <typeAlias alias="cv" type="com.myaws1125.myapp.domain.CommentVo"/>
  <typeAlias alias="monv" type="com.myaws1125.myapp.domain.MonthlyVo"/>
  <typeAlias alias="rv" type="com.myaws1125.myapp.domain.ReviewVo"/>
+  <typeAlias alias="bkv" type="com.myaws1125.myapp.domain.BookmarkVo"/>
  <typeAlias alias="scri" type="com.myaws1125.myapp.domain.SearchCriteria"/>
 
 </typeAliases>

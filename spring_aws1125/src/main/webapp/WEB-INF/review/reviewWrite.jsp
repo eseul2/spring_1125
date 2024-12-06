@@ -48,7 +48,7 @@ function reviewCheck() {
 
 <header class="header">
 	<div class="logo">
-		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
+		<a href ="<%=request.getContextPath()%>/review/main.aws">빵지순례</a>
 	</div>
 <div class="separator"></div>
         
@@ -56,7 +56,7 @@ function reviewCheck() {
 <!-- 네비게이션 바 -->
 	<nav class="navbar">
 		<ul>
-			<li><a href ="<%=request.getContextPath()%>/member/main.aws">홈</a></li>
+			<li><a href ="<%=request.getContextPath()%>/review/main.aws">홈</a></li>
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>

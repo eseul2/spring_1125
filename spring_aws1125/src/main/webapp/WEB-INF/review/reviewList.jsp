@@ -23,7 +23,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>빵집 찾기</title>
 <link href= "<%=request.getContextPath()%>/resources/css/reviewListStyle.css" type="text/css" rel="stylesheet" >
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
+<!-- 제이쿼리 cdn 주소 -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script> 
 
 <body>
 
@@ -80,6 +83,7 @@
 
 <!-- 카테고리 섹션 -->
 <div class="category-section">
+	<div class="category-item" onclick="location.href='<%=request.getContextPath()%>/review/reviewList.aws'">전체</div>
 	<div class="category-item" onclick="location.href='<%=request.getContextPath()%>/review/reviewList.aws?area=서울'">서울</div>
 	<div class="category-item" onclick="location.href='<%=request.getContextPath()%>/review/reviewList.aws?area=경기'">경기</div>
 	<div class="category-item" onclick="location.href='<%=request.getContextPath()%>/review/reviewList.aws?area=경남/울산'">경남/울산</div>
@@ -108,21 +112,22 @@
             String[] filenames = rv.getFilename().split(",");
             // 첫 번째 이미지 파일만 가져오기
             String firstImage = filenames.length > 0 ? filenames[0] : ""; // 첫 번째 이미지만 가져옴
-        %>
-        <a href="<%=request.getContextPath() %>/review/reviewContents.aws?review_id=<%=rv.getReview_id() %>" class="link">
+        %> 
         <div class="card">
+        <a href="<%=request.getContextPath() %>/review/reviewContents.aws?review_id=<%=rv.getReview_id() %>" class="link">
             <!-- 첫 번째 이미지만 표시 -->
             <img src="<%= request.getContextPath() %>/review/displayFile.aws?fileName=<%= firstImage %>" alt="추천 빵집">
+		</a>
             <div class="card-content">
                 <div class="title-container">
                     <h3><strong><%=rv.getBakery_name()%></strong></h3>
-                    <!-- 북마크 버튼 -->
-                    <button class="bookmark-btn" data-review-id="1">
-                        <span class="bookmark-icon">&#9825;</span> <!-- 빈 하트 -->
-                    </button>
+				<c:if test="${!empty midx}">
+        		<button class="bookmark-btn" data-review-id="${rv.review_id}" 
+                	onclick="toggleBookmark(this)">
+            		<i class="fa ${bkv.isBookmarked ? 'fa-heart' : 'fa-heart-o'}"></i>&#9825;
+        		</button>
+				</c:if>
                 </div>
-                
-                <!-- 가로 구분선 -->
                 <hr class="freview"> <!-- 미리보기 구분선 -->
                 <div class="contact-info">
                     <p><span class="label">주소:</span> 
@@ -132,7 +137,6 @@
                 <p><%=rv.getReview_contents()%></p>
             </div>
         </div>
-        </a>
         <%
         num = num-1;
         }
@@ -190,6 +194,34 @@
             <p>&copy; 2024 빵지순례 웹사이트. 모든 권리 보유.</p>
         </div>
     </footer>    
+    
+    
+<script>
+
+function toggleBookmark(btn) {
+    var review_id = $(btn).data('review-id');
+    $.ajax({
+        url: "<%=request.getContextPath()%>/bookmark/toggleBookmark",
+        type: "POST",
+        data: { review_id: review_id },
+        success: function(response) {
+            if (response === "loginRequired") {
+                alert("로그인을 해주세요.");
+                location.href = "<%=request.getContextPath()%>/member/memberLogin.aws";
+            } else if (response === "added") {
+                $(btn).find('i').removeClass('fa-heart-o').addClass('fa-heart');
+            } else if (response === "removed") {
+                $(btn).find('i').removeClass('fa-heart').addClass('fa-heart-o');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+            alert("북마크 처리 중 오류가 발생했습니다.");
+        }
+    });
+}
+
+</script>    
     
 
 </body>

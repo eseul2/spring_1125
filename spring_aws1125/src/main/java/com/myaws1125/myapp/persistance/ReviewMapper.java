@@ -3,6 +3,8 @@ package com.myaws1125.myapp.persistance;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.myaws1125.myapp.domain.ReviewVo;
 import com.myaws1125.myapp.domain.SearchCriteria;
 
@@ -14,5 +16,6 @@ public interface ReviewMapper {
 	public ReviewVo reviewSelectOne(int review_id); // 내용 나타내기
 	public int reviewDelete(int review_id); // 삭제하기 기능
 	public int reviewUpdate(ReviewVo rv); // 수정하기
-
+	public int updateBookmark(@Param("memberId") int memberId, @Param("reviewId") int reviewId, @Param("bookmark") String bookmark);
+	public ArrayList<ReviewVo> bookmarkReviews(HashMap<String,Object> hm); // 북마크된 게시물만 가져오기
 }

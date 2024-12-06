@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper의 네임스페이스 설정. 해당 인터페이스와 정확히 연결하기 위해 사용-->
+<mapper namespace="com.myaws1125.myapp.persistance.BookmarkMapper">
+
+    <!-- 북마크 추가 -->
+    <insert id="insertBookmark">
+        INSERT INTO bookmark (midx, review_id, bookmark_date)
+        VALUES (#{midx}, #{review_id}, NOW());
+    </insert>
+
+    <!-- 북마크 삭제 -->
+    <delete id="deleteBookmark">
+        DELETE FROM bookmark
+        WHERE midx = #{midx} AND review_id = #{review_id};
+    </delete>
+
+    <!-- 북마크 여부 확인 -->
+    <select id="checkBookmark" resultType="int">
+        SELECT COUNT(*) 
+        FROM bookmark 
+        WHERE midx = #{midx} AND review_id = #{review_id};
+    </select>
+
+<!-- 찜한 게시물 목록 조회 -->
+<select id="getBookmarkedReviews" resultType="rv">
+    SELECT r.* 
+    FROM bakery_review r
+    JOIN bookmark b ON r.review_id = b.review_id
+    WHERE b.midx = #{midx};
+</select>
+
+</mapper>

@@ -20,13 +20,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이달의 빵집</title>
-<link href= "<%=request.getContextPath()%>/resources/css/monthlyListStyle.css" type-"text/css" rel="stylesheet" >
+<link href= "<%=request.getContextPath()%>/resources/css/monthlyListStyle.css" type="text/css" rel="stylesheet" >
 </head>
 <body>
 
 <header class="header">
 	<div class="logo">
-		<a href ="<%=request.getContextPath()%>/member/main.aws">빵지순례</a>
+		<a href ="<%=request.getContextPath()%>/review/main.aws">빵지순례</a>
 	</div>
 <div class="separator"></div>
         
@@ -34,7 +34,7 @@
 <!-- 네비게이션 바 -->
 	<nav class="navbar">
 		<ul>
-			<li><a href ="<%=request.getContextPath()%>/member/main.aws">홈</a></li>
+			<li><a href ="<%=request.getContextPath()%>/review/main.aws">홈</a></li>
 			<li><a href ="<%=request.getContextPath()%>/review/reviewList.aws">빵집찾기</a></li>
 			<li><a href ="<%=request.getContextPath()%>/monthly/monthlyList.aws">이달의 빵집</a></li>
 			<li><a href ="<%=request.getContextPath()%>/board/boardList.aws">자유게시판</a></li>

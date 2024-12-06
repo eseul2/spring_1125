@@ -23,8 +23,17 @@ public class ReviewVo {
 	private List<String> uploadedFilenames; // 다중 파일 이름 저장
 	private String address;
 	private String modifyday;
+	private String bookmark;
 	
 	
+
+	public String getBookmark() {
+		return bookmark;
+	}
+
+	public void setBookmark(String bookmark) {
+		this.bookmark = bookmark;
+	}
 
 	// ReviewVo에서 파일 이름을 분리해서 리스트로 반환하는 메서드를 추가
 	public List<String> getFileNames() {
